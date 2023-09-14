@@ -6,75 +6,67 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 10:58:37 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/13 20:36:14 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/09/14 15:22:20 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
-#include <array>
-// #include <vector>
-#include <iomanip>
+#include "contacts.hpp"
+#include "phonebook.hpp"
 
-class Contacts
-{
-	std::string	first_name;
-	std::string	last_name;
-	std::string	nickname;
-	std::string	phone_number;
-	std::string	darkest_secret;
-	public:
-		// setters
-		void set_first_name(std::string var){
-			first_name = var;
-		}
-		void set_last_name(std::string var){
-			last_name = var;
-		}
-		void set_nickname(std::string var){
-			nickname = var;
-		}
-		void set_phone_number(std::string var){
-			phone_number = var;
-		}
-		void set_darkest_secret(std::string var){
-			darkest_secret = var;
-		}
-		// getters
-		std::string	get_first_name(){
-			return (first_name);
-		}
-		std::string	get_last_name(){
-			return (last_name);
-		}
-		std::string	get_nickname(){
-			return (nickname);
-		}
-		std::string	get_phone_number(){
-			return (phone_number);
-		}
-		std::string	get_darkest_secret(){
-			return (darkest_secret);
-		}
-		void	looper(std::string new_value)
-		{
-			first_name = new_value;
-		}
-};
+// class Contacts
+// {
+// 	std::string	first_name;
+// 	std::string	last_name;
+// 	std::string	nickname;
+// 	std::string	phone_number;
+// 	std::string	darkest_secret;
+// 	public:
+// 		// setters
+// 		void set_first_name(std::string var){
+// 			first_name = var;
+// 		}
+// 		void set_last_name(std::string var){
+// 			last_name = var;
+// 		}
+// 		void set_nickname(std::string var){
+// 			nickname = var;
+// 		}
+// 		void set_phone_number(std::string var){
+// 			phone_number = var;
+// 		}
+// 		void set_darkest_secret(std::string var){
+// 			darkest_secret = var;
+// 		}
+// 		// getters
+// 		std::string	get_first_name(){
+// 			return (first_name);
+// 		}
+// 		std::string	get_last_name(){
+// 			return (last_name);
+// 		}
+// 		std::string	get_nickname(){
+// 			return (nickname);
+// 		}
+// 		std::string	get_phone_number(){
+// 			return (phone_number);
+// 		}
+// 		std::string	get_darkest_secret(){
+// 			return (darkest_secret);
+// 		}
+// 		void	looper(std::string new_value)
+// 		{
+// 			first_name = new_value;
+// 		}
+// };
 
-class PhoneBook {
-		Contacts	contact[8];
-	public:		
-		Contacts* getContacts()
-		{
-			return (contact);
-		}
-		// void ADD();
-		// void SEARCH();
-};
-
-
-
+// class PhoneBook {
+// 		Contacts	contact[8];
+// 	public:		
+// 		Contacts* getContacts()
+// 		{
+// 			return (contact);
+// 		}
+// };
 
 void format(const std::string& text) {
 	std::cout << " | ";
@@ -133,7 +125,6 @@ int main()
 		}
 		else if (input == "SEARCH")
 		{
-			// int	index;
 			std::string index;
 			int j = 1;
 			while (j <= i)
@@ -162,7 +153,7 @@ int main()
 			else {
 				std::cout << "WRONG INDEX" << std::endl;
 				//clears the input stream
-				std::cin.clear();
+				// std::cin.clear();
 			}
 		}
 	}
