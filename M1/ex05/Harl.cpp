@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 12:00:43 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/21 13:38:00 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/09/21 19:51:41 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,23 @@ void Harl::error() {
 
 void Harl::complain(std::string level)
 {
-	std::map<std::string, Harlenum> stringToEnumMap;
-	stringToEnumMap["debug"] = Debug;
-	stringToEnumMap["info"] = Info;
-	stringToEnumMap["warning"] = Warning;
-	stringToEnumMap["error"] = Error;
+	typedef void (Harl::*mp)();
+	mp Alist[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string list[4] = {"debug", "info", "warning" , "error"};
+	Harl obj;
 
-	std::map<std::string, Harlenum>::iterator it = stringToEnumMap.find(level);
-	switch (it->second) {
-		case Debug:
-			debug();
+	int i = 0;
+	while (i < 4)
+	{
+		if (list[i] == level)
+		{
+			(obj.*(Alist[i]))();
 			break;
-		case Info:
-			info();
-			break;
-		case Warning:
-			warning();
-			break;
-		case Error:
-			error();
-			break;
-		default:
-			std::cout << "UNKNOWN COMPLAIN '" << level << "'" << std::endl;
+		}
+		i++;
+	}
+	if (i == 4)
+	{
+		std::cout << "UNKNOWN COMPLAIN '" << level << "'" << std::endl;
 	}
 }
