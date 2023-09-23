@@ -6,7 +6,7 @@
 #    By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/24 23:46:37 by aachfenn          #+#    #+#              #
-#    Updated: 2023/06/25 00:17:54 by aachfenn         ###   ########.fr        #
+#    Updated: 2023/09/14 20:46:55 by aachfenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ RM      = rm -f
 NAME    = megaphone
 
 ${NAME} :	${OBJS}
-		g++ ${FLAGS} ${SRC} -o ${NAME}
+		c++ ${FLAGS} ${SRC} -o ${NAME}
 
 all     : ${NAME}
 

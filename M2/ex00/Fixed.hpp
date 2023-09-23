@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/14 15:10:49 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/15 13:39:48 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/09/22 20:58:17 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/09/23 11:23:08 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-#define PHONEBOOK_HPP
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
-#include "contacts.hpp"
 #include <iostream>
-#include <string>
-#include <array>
-#include <iomanip>
 
-
-class PhoneBook {
-		Contacts	contact[8];
+class Fixed {
+		int	fpoint;
+		static const int fbits = 8;
 	public:
-	// PhoneBook();
-	// ~PhoneBook();
-		Contacts* getContacts();
+		Fixed();
+		Fixed(const Fixed &copy);
+		~Fixed();
+		Fixed	&operator=(const Fixed& other);
+		int		getRawBits( void ) const;
+		void	setRawBits( int const raw );
 };
 
 #endif
