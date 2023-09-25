@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 20:58:17 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/23 11:20:39 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/09/25 12:35:30 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,33 @@ class Fixed {
 		Fixed(const float number);
 		float	toFloat( void ) const;
 		int		toInt( void ) const;
+		// NEW_1
+		Fixed&	min(Fixed &nb_1, Fixed &nb_2);
+		const Fixed&	min(const Fixed &nb_1, const Fixed &nb_2);
+
+		Fixed&	max(Fixed &nb_1, Fixed &nb_2);
+		const Fixed&	max(const Fixed &nb_1, const Fixed &nb_2);
+	
+		// functions that overload for comparison
+		bool operator>(const Fixed& nb) const;
+		bool operator<(const Fixed& nb) const;
+		bool operator>=(const Fixed& nb) const;
+		bool operator<=(const Fixed& nb) const;
+		bool operator==(const Fixed& nb) const;
+		bool operator!=(const Fixed& nb) const;
+	
+		// functions that overload for arthmatic operators
+		Fixed operator+(const Fixed& nb) const;
+		Fixed operator-(const Fixed& nb) const;
+		Fixed operator*(const Fixed& nb) const;
+		Fixed operator/(const Fixed& nb) const;
+	
+		// functions that overload for incre/decre
+		Fixed& operator++();
+		Fixed operator++(int);
+		Fixed& operator--();
+		Fixed operator--(int);
+		
 		/////
 		~Fixed();
 		Fixed&	operator=(const Fixed& other);

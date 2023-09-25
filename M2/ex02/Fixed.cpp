@@ -6,57 +6,113 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 20:58:11 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/23 14:26:39 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/09/25 12:35:21 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-// functions that overload for arthmatic operators
-std::ostream &operator+(std::ostream *cout, const Fixed &fixed){
-	
+////////
+Fixed&	Fixed::min(Fixed &nb_1, Fixed &nb_2){
+	if (nb_1.fpoint > nb_2.fpoint)
+		return (nb_2);
+	else
+		return (nb_1);
+}
+
+const Fixed&	Fixed::min(const Fixed &nb_1, const Fixed &nb_2){
+	if (nb_1.fpoint > nb_2.fpoint)
+		return (nb_2);
+	else
+		return (nb_1);
+}
+
+Fixed&	Fixed::max(Fixed &nb_1, Fixed &nb_2){
+	if (nb_1.fpoint < nb_2.fpoint)
+		return (nb_2);
+	else
+		return (nb_1);
+}
+
+const Fixed&	Fixed::max(const Fixed &nb_1, const Fixed &nb_2){
+	if (nb_1.fpoint < nb_2.fpoint)
+		return (nb_2);
+	else
+		return (nb_1);
 }
 
 // functions that overload for arthmatic operators
-std::ostream &operator+(std::ostream *cout, const Fixed &fixed){
-	
+Fixed Fixed::operator+(const Fixed& nb) const {
+	return Fixed(fpoint + nb.fpoint);
 }
 
-std::ostream &operator-(std::ostream *cout, const Fixed &fixed){
-	
+Fixed Fixed::operator-(const Fixed& nb) const {
+	return Fixed(fpoint - nb.fpoint);
 }
 
-std::ostream &operator*(std::ostream *cout, Fixed &fixed){
-	fixed.setRawBits(fixed.getRawBits() * fixed.getRawBits());
+Fixed Fixed::operator*(const Fixed& nb) const {
+	return Fixed((fpoint * nb.fpoint) >> fbits);
+	// The ">> fbits" is used to scale the result back down to fixed-point representation
 }
 
-std::ostream &operator/(std::ostream *cout, const Fixed &fixed){
-	
+Fixed Fixed::operator/(const Fixed& nb) const {
+	if (nb.fpoint != 0) {
+		return Fixed((fpoint << fbits) / nb.fpoint);
+		// The "<< fbits" is used to scale the dividend before division
+	} else {
+		// Handle division by zero gracefully
+		// Here, we return a Fixed object with a value of 0 to indicate an error
+		return Fixed(0);
+	}
 }
+
 
 // functions that overload for comparison
-std::ostream &operator>(std::ostream *cout, const Fixed &fixed){
-	
+bool Fixed::operator>(const Fixed& nb) const {
+	return (fpoint > nb.fpoint);
 }
 
-std::ostream &operator<(std::ostream *cout, const Fixed &fixed){
-	
+bool Fixed::operator<(const Fixed& nb) const {
+	return (fpoint < nb.fpoint);
 }
 
-std::ostream &operator>=(std::ostream *cout, const Fixed &fixed){
-	
+bool Fixed::operator>=(const Fixed& nb) const {
+	return (fpoint >= nb.fpoint);
 }
 
-std::ostream &operator<=(std::ostream *cout, const Fixed &fixed){
-	
+bool Fixed::operator<=(const Fixed& nb) const {
+	return (fpoint <= nb.fpoint);
 }
 
-std::ostream &operator==(std::ostream *cout, const Fixed &fixed){
-	
+bool Fixed::operator==(const Fixed& nb) const {
+	return (fpoint == nb.fpoint);
 }
 
-std::ostream &operator!=(std::ostream *cout, const Fixed &fixed){
-	
+bool Fixed::operator!=(const Fixed& nb) const {
+	return (fpoint != nb.fpoint);
+}
+
+// functions that overload for incre/decre
+Fixed& Fixed::operator++() { // Pre-increment
+	++this->fpoint;
+	return *this;
+}
+
+Fixed Fixed::operator++(int) { // Post-increment
+	Fixed tmp(*this);
+	++(*this);
+	return tmp;
+}
+
+Fixed& Fixed::operator--() { // Pre-decrement
+	--this->fpoint;
+	return *this;
+}
+
+Fixed Fixed::operator--(int) { // Post-decrement
+	Fixed tmp(*this);
+	--(*this);
+	return tmp;
 }
 
 ///////////
@@ -117,8 +173,6 @@ Fixed& Fixed::operator=(const Fixed& other)
 
 int		Fixed::getRawBits( void ) const
 {
-	// std::cout << "getRawBits member function called" << std::endl;
-	
 	return (fpoint);
 }
 
