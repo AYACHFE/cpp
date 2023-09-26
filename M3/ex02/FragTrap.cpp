@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 12:38:11 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/26 15:23:29 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/09/26 16:51:23 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/09/26 17:21:00 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-int main()
+void FragTrap::highFivesGuys(void)
 {
-	ScavTrap trap("first ONE");
-	trap.takeDamage(50);
-	trap.attack("aymane");
-	trap.attack("mehdi");
-	trap.beRepaired(2);
+	std::cout << "HIGH FIVE ;)" << std::endl;
+}
+
+FragTrap::FragTrap(std::string newname)  : ClapTrap(newname) 
+{
+	setname(newname);
+	sethitpoints(100);
+	setenergypoints(100);
+	setattackdamage(30);
+	std::cout << "FragTrap builded successfully" <<std::endl;
+}
+
+FragTrap::~FragTrap() {
+	std::cout << "FragTrap destroyed successfully" <<std::endl;
 }

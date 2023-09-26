@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 12:38:11 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/26 15:23:29 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/09/25 19:56:03 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/09/26 15:16:22 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
-int main()
+ScavTrap::ScavTrap(std::string newname)  : ClapTrap(newname) 
 {
-	ScavTrap trap("first ONE");
-	trap.takeDamage(50);
-	trap.attack("aymane");
-	trap.attack("mehdi");
-	trap.beRepaired(2);
+	setname(newname);
+	sethitpoints(100);
+	setenergypoints(50);
+	setattackdamage(20);
+	std::cout << "ScavTrap builded successfully" <<std::endl;
+}
+
+ScavTrap::~ScavTrap() {
+	std::cout << "ScavTrap destroyed successfully" <<std::endl;
+}
+
+void	ScavTrap::guardGate()
+{
+	std::cout << "ScavTrap is now in Gate keeper mode" << std::endl;
 }

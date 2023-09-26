@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 12:38:11 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/26 15:23:29 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/09/26 16:51:30 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/09/26 17:21:12 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
-int main()
-{
-	ScavTrap trap("first ONE");
-	trap.takeDamage(50);
-	trap.attack("aymane");
-	trap.attack("mehdi");
-	trap.beRepaired(2);
-}
+#include "ClapTrap.hpp"
+
+class FragTrap:public ClapTrap {
+	public:	
+		FragTrap(std::string newname);
+		~FragTrap();
+		void highFivesGuys(void);
+};
+
+#endif

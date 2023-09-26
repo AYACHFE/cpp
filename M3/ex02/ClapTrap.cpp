@@ -6,11 +6,12 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:23:59 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/26 15:11:04 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:54:57 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+
 
 std::string ClapTrap::getname()
 {
@@ -55,16 +56,10 @@ void	ClapTrap::setattackdamage(int nb)
 	attackdamage = nb;
 }
 
-ClapTrap::ClapTrap(std::string newname) : name(newname), hitpoints(10), energypoints(10), attackdamage(0) {
-	std::cout << "ClapTrap builded successfully" <<std::endl;
-}
 
-ClapTrap::~ClapTrap() {
-	std::cout << "ClapTrap destroyed successfully" <<std::endl;
-}
-
+//
 void ClapTrap::attack(const std::string& target){
-	if (hitpoints > 0 && hitpoints >= 100)
+	if (hitpoints > 0 && hitpoints >= 10)
 	{
 		hitpoints -= attackdamage;
 		energypoints--;
@@ -89,4 +84,12 @@ void ClapTrap::beRepaired(unsigned int amount)
 	}
 	else
 		std::cout << "NOT ENOUGH POINTS" << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string newname) : name(newname), hitpoints(10), energypoints(10), attackdamage(0) {
+	std::cout << "constructor has been called" <<std::endl;
+}
+
+ClapTrap::~ClapTrap() {
+	std::cout << "destructor has been called" <<std::endl;
 }
