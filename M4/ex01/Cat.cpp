@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 21:26:52 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/28 14:04:01 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/09/26 20:55:26 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/09/28 12:41:34 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+#include "Cat.hpp"
 
-int main( void )
+
+std::string Cat::getType() const
 {
-	Fixed		a;
-	Fixed const	b( Fixed( 5.05f ) * Fixed( 2 ) );
-	
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	
-	std::cout << b << std::endl;
-	
-	std::cout << Fixed::max( a, b ) << std::endl;
-	
-	return 0;
+	return (type);
+}
+
+void Cat::makeSound() const
+{
+	std::cout << "MEAOWW" << std::endl;
+}
+
+Cat::Cat() : type("Cat")
+{
+	brain = new Brain;
+	std::cout << "Cat constructor called successfully" << std::endl;
+}
+
+Cat::~Cat()
+{
+	delete brain;
+	std::cout << "Cat destructor called successfully" << std::endl;
 }

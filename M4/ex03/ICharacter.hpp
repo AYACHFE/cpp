@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 21:26:52 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/28 14:04:01 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/09/28 13:20:36 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/09/28 13:44:47 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+#ifndef ICHARACTER_HPP
+#define ICHARACTER_HPP
 
-int main( void )
+#include<iostream>
+
+
+class ICharacter
 {
-	Fixed		a;
-	Fixed const	b( Fixed( 5.05f ) * Fixed( 2 ) );
-	
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	
-	std::cout << b << std::endl;
-	
-	std::cout << Fixed::max( a, b ) << std::endl;
-	
-	return 0;
-}
+	public:
+		virtual ~ICharacter() {};
+		virtual std::string const & getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter& target) = 0;
+};
+
+#endif

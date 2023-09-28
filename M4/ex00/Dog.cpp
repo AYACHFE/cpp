@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 21:26:52 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/28 14:04:01 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/09/26 20:55:16 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/09/28 09:21:21 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+#include "Dog.hpp"
 
-int main( void )
+std::string Dog::getType() const
 {
-	Fixed		a;
-	Fixed const	b( Fixed( 5.05f ) * Fixed( 2 ) );
-	
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	
-	std::cout << b << std::endl;
-	
-	std::cout << Fixed::max( a, b ) << std::endl;
-	
-	return 0;
+	return (type);
+}
+
+
+void Dog::makeSound() const
+{
+	std::cout << "BARKING" << std::endl;
+}
+
+Dog::Dog() : type("Dog")
+{
+	std::cout << "Dog constructor called successfully" << std::endl;
+}
+
+Dog::~Dog()
+{
+	std::cout << "Dog destructor called successfully" << std::endl;
 }

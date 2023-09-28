@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 20:58:11 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/23 11:23:34 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/09/28 13:47:33 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ Fixed& Fixed::operator=(const Fixed& other)
 int		Fixed::getRawBits( void ) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
-	
 	return (fpoint);
 }
 

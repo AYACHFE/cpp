@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 21:26:52 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/28 14:04:01 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/09/28 11:33:28 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/09/28 11:33:29 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
+
 #include <iostream>
 
-int main( void )
-{
-	Fixed		a;
-	Fixed const	b( Fixed( 5.05f ) * Fixed( 2 ) );
-	
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	
-	std::cout << b << std::endl;
-	
-	std::cout << Fixed::max( a, b ) << std::endl;
-	
-	return 0;
-}
+class Brain {
+		std::string ideas[100];
+	public:
+		Brain();
+		~Brain();
+};
+
+#endif

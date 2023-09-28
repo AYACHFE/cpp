@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 21:26:52 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/28 14:04:01 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/09/28 10:11:22 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/09/28 10:28:51 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+#include "WrongCat.hpp"
 
-int main( void )
+std::string WrongCat::getType() const
 {
-	Fixed		a;
-	Fixed const	b( Fixed( 5.05f ) * Fixed( 2 ) );
-	
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	
-	std::cout << b << std::endl;
-	
-	std::cout << Fixed::max( a, b ) << std::endl;
-	
-	return 0;
+	return (type);
+}
+
+void WrongCat::makeSound() const
+{
+	std::cout << "MEAOWWWWWWWWWWWWW" << std::endl;
+}
+
+WrongCat::WrongCat() : type("WRONG CAT")
+{
+	std::cout << "WrongCat constructor called successfully" << std::endl;
+}
+
+WrongCat::~WrongCat()
+{
+	std::cout << "WrongCat destructor called successfully" << std::endl;
 }
