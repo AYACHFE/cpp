@@ -6,11 +6,17 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:55:56 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/28 13:11:27 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/10/05 21:05:00 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "ICharacter.hpp"
+#include "AMateria.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
+#include "IMateriaSource.hpp"
+#include "MateriaSource.hpp"
+#include "Character.hpp"
 
 int main() {
 	IMateriaSource* src = new MateriaSource();

@@ -6,13 +6,13 @@
 #    By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 17:41:54 by aachfenn          #+#    #+#              #
-#    Updated: 2023/09/28 12:09:22 by aachfenn         ###   ########.fr        #
+#    Updated: 2023/09/29 20:08:26 by aachfenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC     = main.cpp Animal.cpp Dog.cpp Cat.cpp  Brain.cpp
 
-FLAGS   = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS   = -Wall -Wextra -Werror -std=c++98
 
 OBJS    = main.o Animal.o Dog.o Cat.o  Brain.o
 
@@ -21,7 +21,7 @@ RM      = rm -f
 NAME    = Brain
 
 ${NAME} :	${OBJS}
-		c++ ${FLAGS} ${SRC} -o ${NAME}
+		c++ ${CXXFLAGS} ${SRC} -o ${NAME}
 
 all     : ${NAME}
 

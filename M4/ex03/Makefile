@@ -6,14 +6,14 @@
 #    By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 12:55:23 by aachfenn          #+#    #+#              #
-#    Updated: 2023/09/28 12:55:52 by aachfenn         ###   ########.fr        #
+#    Updated: 2023/10/05 08:46:09 by aachfenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRC     = main.cpp
+SRC     = main.cpp AMateria.cpp Cure.cpp Ice.cpp ICharacter.cpp IMateriaSource.cpp
 
-FLAGS   = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS   = -Wall -Wextra -Werror -std=c++98
 
 OBJS    = main.o
 
@@ -21,8 +21,8 @@ RM      = rm -f
 
 NAME    = ex03
 
-${NAME} :	${OBJS}
-		c++ ${FLAGS} ${SRC} -o ${NAME}
+${NAME} :	${OBJS} AMateria.hpp Cure.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp
+		c++ ${CXXFLAGS} ${OBJS} -o ${NAME}
 
 all     : ${NAME}
 
