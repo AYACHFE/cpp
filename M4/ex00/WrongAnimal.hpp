@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 10:03:35 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/09/28 10:05:04 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:01:49 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class WrongAnimal {
 	public:
 		WrongAnimal();
 		virtual ~WrongAnimal();
-		virtual void makeSound() const;
+		void makeSound() const;
 		virtual std::string getType() const;
 };
 

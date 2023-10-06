@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:14:56 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/10/05 21:07:06 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:11:10 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 
 class Cure : public AMateria {
-		std::string type;
+		// std::string type;
 		// const std::string type;
 	public:
 	//ORTHO

@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:20:36 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/10/05 20:25:54 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/10/05 22:51:47 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include<iostream>
 #include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {

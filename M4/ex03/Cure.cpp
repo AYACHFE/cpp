@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:15:49 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/10/05 10:19:18 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:19:22 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 #include "AMateria.hpp"
 
 //OTHODOX
-Cure::Cure() : type("cure"){
-	std::cout << "CURE construcor called\n";
+Cure::Cure(){
+	// std::cout << "CURE construcor called\n";
+	type = "cure";
 }
 
-Cure::Cure(const Cure &copy) : type(copy.type) {
-	std::cout << "CURE copy construcor called\n";
+Cure::Cure(const Cure &copy) {
+	type = "cure";
+	(void)	copy;
+	// std::cout << "CURE copy construcor called\n";
 
 }
 
 Cure::~Cure(){
-	std::cout << "CURE destrucor called\n";
+	// std::cout << "CURE destrucor called\n";
 }
 //
 
@@ -36,5 +39,5 @@ Cure *Cure::clone() const
 
 void Cure::use(ICharacter &target)
 {
-	std::cout << "* shoots an ice bolt at " << target.getname() << " *" << std::endl;
+	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

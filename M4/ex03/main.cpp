@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:55:56 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/10/05 21:05:00 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/10/06 15:22:54 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 int main() {
 	IMateriaSource* src = new MateriaSource();
+	
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 
@@ -32,8 +33,10 @@ int main() {
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+	delete tmp;
 	delete bob;
 	delete me;
 	delete src;
+	// for(;;);
 	return 0;
 }

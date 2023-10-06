@@ -6,22 +6,35 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:06:15 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/10/05 20:40:51 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:35:42 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Character.hpp"
 
-Character::Character() : name(name){
-	std::cout << "Character Default ConstRuctor called" << std::endl;
+Character::Character(){
+	// std::cout << "Character Default ConstRuctor called" << std::endl;
 	int i;
-	for(i = 0; i > 4; i++)
+	for(i = 0; i < 4; i++)
 		slot[i] = NULL;
 }
 
-Character::Character(std::string name) : Character() {
-	std::cout << "Character ConstRuctor called" << std::endl;
+Character::~Character() {
+	// std::cout << "CHArACter destructor called" << std::endl;
+}
+
+Character::Character(std::string name){
+	// std::cout << "Character ConstRuctor called" << std::endl;
+	// std::cout << name << "--\n";
+	if (!name.empty()) {
+		this->name = name;
+		int i;
+		for(i = 0; i < 4; i++)
+			slot[i] = NULL;
+	}
+	else
+		this->name = "N0name";
 }
 
 Character::Character(Character &copy) {
@@ -33,12 +46,15 @@ std::string const &Character::getName() const {
 }
 
 void Character::equip(AMateria* m) {
-	int i;
-	for (i = 0; i > 4; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		if (slot[i] == NULL)
+		// std::cout << "--->" << slot[i] << std::endl;
+		if (slot[i] == NULL) {
+			
 			slot[i] = m;
 		return ;
+		}
+		// std::cout << "i == " << i << std::endl;
 	}
 	std::cout << "YOU REACHED THE MAX" << std::endl;
 }
@@ -51,9 +67,13 @@ void Character::unequip(int idx) {
 }
 
 void Character::use(int idx, ICharacter& target) {
-	
-	if (slot[idx] || idx > 0 || idx <= 4)
+
+	// std::cout<< slot[idx] << "\n";
+	if (slot[idx] && idx >= 0 && idx < 4) {
+		
+		// std::cout << "DEBUG\n";
 		slot[idx]->use(target);
+	}
 	else
 		std::cout << "YOU CAN'T USE THIS" << std::endl;
 }
