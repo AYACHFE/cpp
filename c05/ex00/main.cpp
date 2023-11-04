@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:23:06 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/10/24 16:40:49 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:41:08 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int main()
 {
-	Bureaucrat *first;
+	Bureaucrat *first = new Bureaucrat;
 	first->setName("AYAC");
-	first->setGrade(100);
+	first->setGrade(0);
+	cout << first;
 }
