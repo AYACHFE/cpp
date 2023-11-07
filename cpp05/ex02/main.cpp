@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:23:06 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/06 15:20:48 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:33:29 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@ int main()
 {
 	try {
 		Bureaucrat first("AYAC", 15);
+		Form form("CIN", 15);
+		form.beSigned(first);
+		first.signForm(form);
 		first.increment_grade();
 		
 		cout << first << endl;
+		cout << form << endl;
 	}
 	catch(std::exception& except) {
 		std::cerr << except.what() << endl;
 	}
+	
 }

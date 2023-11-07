@@ -1,26 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 08:23:06 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/06 15:20:48 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/07 12:04:36 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/07 14:08:35 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-int main()
-{
-	try {
-		Bureaucrat first("AYAC", 15);
-		first.increment_grade();
-		
-		cout << first << endl;
-	}
-	catch(std::exception& except) {
-		std::cerr << except.what() << endl;
-	}
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) {
+	
 }

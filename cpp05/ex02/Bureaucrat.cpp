@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:33:08 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/07 10:59:51 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:50:59 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Bureaucrat::Bureaucrat() {
 	// cout << "ZZZZzzz .. ." << endl;
 }
 
-Bureaucrat::Bureaucrat(string newname, int newGrade)  : name(newname) {
+Bureaucrat::Bureaucrat(string newname, int newGrade)  :  name(newname)  {
 	// cout << "ZZZZzzz .. ..." << endl;
 	if (newGrade <= 150 && newGrade > 0)
 	{
@@ -35,6 +35,7 @@ Bureaucrat::~Bureaucrat() {
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy)  : name(copy.name) , grade(copy.grade) {
+
 }
 
 
@@ -76,4 +77,18 @@ void	Bureaucrat::decrement_grade() {
 		throw (GradeTooHighException());
 	else
 		grade--;
+}
+
+void	Bureaucrat::signForm(Form &form) {
+	try
+	{
+		// form.beSigned(*this);
+		if (form.getcheck() == false)
+			throw(1);
+		cout << name << " signed " << form.getname() << endl;
+	}
+	catch (...)
+	{	
+			cout << name << " couldn’t sign " << form.getname() <<  " because " << form.getcheck() << endl;
+	}
 }

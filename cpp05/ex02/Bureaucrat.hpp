@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:25:16 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/04 13:16:24 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:26:08 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,43 @@
 
 #include <iostream>
 #include <exception>
-
+#include "AForm.hpp"
 using	std::cout;
 using	std::endl;
 using	std::string;
 
+class Form;
+
 class Bureaucrat {
-		string name;
+		const string name;
 		int grade;
-		static const bool check = false;
 	public:
 	//ORTHODOX
 		Bureaucrat();
-		Bureaucrat(Bureaucrat &copy);
+		Bureaucrat(const Bureaucrat &copy);
 		~Bureaucrat();
 		Bureaucrat &operator=(Bureaucrat &newBureaucrat);
 	//
-		string getName();
+		Bureaucrat(string newname, int newGrade);
+		string	getName();
 		int		getGrade();
-		void setName(string newName);
-		void setGrade(int newGrade);
 		class GradeTooLowException;
 		class GradeTooHighException;
+		void	increment_grade();
+		void	decrement_grade();
+		void	signForm(Form &form);
+
+		// execute();
 };
 
 class Bureaucrat::GradeTooLowException :public std::exception {
 	public:
-		virtual const char* what() const _NOEXCEPT;
+		virtual const char* what() const throw();
 };
 
 class Bureaucrat::GradeTooHighException :public std::exception {
 	public:
-		virtual const char* what() const _NOEXCEPT;
+		virtual const char* what() const throw();
 };
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat &sec);

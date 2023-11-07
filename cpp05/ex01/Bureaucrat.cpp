@@ -6,17 +6,17 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:33:08 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/07 10:59:51 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:20:30 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() {
+Bureaucrat::Bureaucrat() : grade(1) {
 	// cout << "ZZZZzzz .. ." << endl;
 }
 
-Bureaucrat::Bureaucrat(string newname, int newGrade)  : name(newname) {
+Bureaucrat::Bureaucrat(string newname, int newGrade)  :  name(newname) {
 	// cout << "ZZZZzzz .. ..." << endl;
 	if (newGrade <= 150 && newGrade > 0)
 	{
@@ -35,6 +35,7 @@ Bureaucrat::~Bureaucrat() {
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy)  : name(copy.name) , grade(copy.grade) {
+
 }
 
 
@@ -76,4 +77,16 @@ void	Bureaucrat::decrement_grade() {
 		throw (GradeTooHighException());
 	else
 		grade--;
+}
+
+void	Bureaucrat::signForm(Form &form) {
+	try
+	{
+		form.beSigned(*this);
+		cout << name << " signed " << form.getname() << endl;
+	}
+	catch (std::exception &e)
+	{	
+		cout << name << " couldn’t sign " << form.getname() <<  " because " << e.what() << endl;
+	}
 }
