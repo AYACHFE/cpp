@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:05:34 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/07 15:36:16 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:40:16 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ PresidentialPardonForm::PresidentialPardonForm() {
 	
 }
 
-PresidentialPardonForm::PresidentialPardonForm() {
+PresidentialPardonForm::~PresidentialPardonForm() {
 	
 }
 
-void PresidentialPardonForm::execute(Bureaucrat const & executor) {
+PresidentialPardonForm::PresidentialPardonForm(string target) : target(target) {
 	
+}
+
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
+	(void)executor;
 }

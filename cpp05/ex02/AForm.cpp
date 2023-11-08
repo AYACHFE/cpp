@@ -6,13 +6,13 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:56:24 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/07 15:35:03 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:42:21 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
-AForm::AForm() : grade(0) {
+AForm::AForm() : grade(1) {
 
 }
 
@@ -20,7 +20,6 @@ AForm::AForm(string newname, int newgrade) : name(newname) , grade(newgrade), ch
 
 	if (newgrade <= 150 && newgrade > 0)
 	{
-		// grade = newgrade;
 		cout << "GRADE GRANTED" << endl;
 		return ;
 	}
@@ -48,16 +47,28 @@ std::ostream &operator<<(std::ostream &out, AForm &sec) {
 	return (out);
 }
 
-string	AForm::getname() {
+string	AForm::getname() const {
 	return (name);
 }
 
-int		AForm::getgrade() {
+int		AForm::getgrade() const{
 	return (grade);
 }
 
-bool	AForm::getcheck() {
+bool	AForm::getcheck() const{
 	return (check);
+}
+
+int		AForm::getexec() const{
+	return (exec);
+}
+
+void	AForm::setcheck(bool newcheck) {
+	check = newcheck;
+}
+
+void	AForm::setexec(int newexec) {
+	exec = newexec;
 }
 
 void	AForm::beSigned(Bureaucrat &bur) {

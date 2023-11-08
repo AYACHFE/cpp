@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:04:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/07 14:08:04 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/08 19:50:57 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 #define SHRUBBERYCREATIONFORM_HPP
 
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 #include <iostream>
+#include <fstream>
+
 using std::string;
 using std::cout;
 using std::endl;
 
-class ShrubberyCreationForm :public Form {
+class ShrubberyCreationForm :public AForm {
+		string target;
 	public:
 		//ORtHODOX
 		ShrubberyCreationForm();
-		ShrubberyCreationForm();
+		ShrubberyCreationForm(string target);
 		ShrubberyCreationForm(ShrubberyCreationForm &copy);
 		~ShrubberyCreationForm();
 		ShrubberyCreationForm &operator=(ShrubberyCreationForm &shru);
 		//
-		void execute(Bureaucrat const & executor);
+		void execute(Bureaucrat const & executor) const;
 };
 
 #endif

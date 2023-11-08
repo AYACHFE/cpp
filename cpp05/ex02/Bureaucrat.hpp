@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:25:16 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/07 13:26:08 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:43:50 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ using	std::cout;
 using	std::endl;
 using	std::string;
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 		const string name;
@@ -33,15 +33,14 @@ class Bureaucrat {
 		Bureaucrat &operator=(Bureaucrat &newBureaucrat);
 	//
 		Bureaucrat(string newname, int newGrade);
-		string	getName();
-		int		getGrade();
+		string	getName() const;
+		int		getGrade() const;
 		class GradeTooLowException;
 		class GradeTooHighException;
 		void	increment_grade();
 		void	decrement_grade();
-		void	signForm(Form &form);
-
-		// execute();
+		void	signForm(AForm &form);
+		void	executeForm(AForm const & form);
 };
 
 class Bureaucrat::GradeTooLowException :public std::exception {

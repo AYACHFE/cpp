@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:33:08 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/07 11:50:59 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:44:04 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ Bureaucrat::Bureaucrat(const Bureaucrat &copy)  : name(copy.name) , grade(copy.g
 }
 
 
-string Bureaucrat::getName() {
+string Bureaucrat::getName() const{
 	return (name);
 }
 
-int Bureaucrat::getGrade() {
+int Bureaucrat::getGrade() const{
 	return (grade);
 }
 
@@ -79,16 +79,20 @@ void	Bureaucrat::decrement_grade() {
 		grade--;
 }
 
-void	Bureaucrat::signForm(Form &form) {
+void	Bureaucrat::signForm(AForm &form) {
 	try
 	{
-		// form.beSigned(*this);
-		if (form.getcheck() == false)
-			throw(1);
+		form.beSigned(*this);
 		cout << name << " signed " << form.getname() << endl;
 	}
-	catch (...)
+	catch (std::exception &e)
 	{	
-			cout << name << " couldn’t sign " << form.getname() <<  " because " << form.getcheck() << endl;
+		cout << name << " couldn’t sign " << form.getname() <<  " because " << e.what() << endl;
 	}
+}
+
+void	Bureaucrat::executeForm(AForm const & form) {
+	
+	form.execute(*this);
+	cout << name << " executed " << form.getname() << endl;
 }
