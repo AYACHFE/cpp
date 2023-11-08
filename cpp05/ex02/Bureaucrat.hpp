@@ -6,12 +6,13 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:25:16 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/08 16:43:50 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/08 21:37:07 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
+// #pragma once
 
 #include <iostream>
 #include <exception>

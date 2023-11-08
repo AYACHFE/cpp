@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:56:36 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/08 16:41:42 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/08 21:07:08 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class AForm {
 		~AForm();
 		AForm &operator=(const AForm &newAform);
 	//
-		AForm(string newname, int newgrade);
+		AForm(string newname, int newgrade, int newexec);
 		string	getname() const;
 		int		getgrade() const;
 		bool	getcheck() const;

@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:05:14 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/08 16:40:03 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/08 21:45:45 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@
 #include <iostream>
 using std::string;
 using std::cout;
-using std::endl;
+using std::endl; 
 
 class RobotomyRequestForm :public AForm  {
 		string target;
-		int grade;
 	public:
 	//ORTHODOX
 		RobotomyRequestForm();

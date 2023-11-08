@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:04:36 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/08 19:53:16 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/08 21:22:27 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 			}
 			else
 				std::cerr << "file coudn't open" << endl;
-			
 			return ;
 		}
 		else
@@ -74,18 +73,23 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	}
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm() {
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137) {
 	
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(string target) : AForm("ShrubberyCreationForm", 145) ,target(target) {
-	setexec(137);
+ShrubberyCreationForm::ShrubberyCreationForm(string target) : AForm("ShrubberyCreationForm", 145, 137) ,target(target) {
+	// setexec(137);
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm &copy) {
-	(void)copy;
+	target = copy.target;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
 	
+}
+
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm &shru) {
+		target = shru.target;
+	return (*this);
 }

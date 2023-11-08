@@ -6,21 +6,21 @@
 #    By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 08:24:39 by aachfenn          #+#    #+#              #
-#    Updated: 2023/11/08 16:02:00 by aachfenn         ###   ########.fr        #
+#    Updated: 2023/11/08 21:53:04 by aachfenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC     = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+SRC     = $(wildcard *.cpp)
 
 CXXFLAGS   = -Wall -Wextra -Werror -std=c++98
 
-OBJS    = main.o Bureaucrat.o AForm.o PresidentialPardonForm.o RobotomyRequestForm.o ShrubberyCreationForm.o
+OBJS    = ${SRC:.cpp=.o}
 
 RM      = rm -f
 
 NAME    = exxx
 
-${NAME} :	${OBJS} Bureaucrat.hpp
+${NAME} :	${OBJS} $(wildcard *.hpp)
 		c++ ${CXXFLAGS} ${OBJS} -o ${NAME}
 
 all     : ${NAME}

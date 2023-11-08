@@ -6,17 +6,17 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:56:24 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/08 16:42:21 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/08 21:14:10 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
-AForm::AForm() : grade(1) {
+AForm::AForm() : grade(1), check(false), exec(1) {
 
 }
 
-AForm::AForm(string newname, int newgrade) : name(newname) , grade(newgrade), check(false) {
+AForm::AForm(string newname, int newgrade, int newexec) : name(newname) , grade(newgrade), check(false), exec(newexec) {
 
 	if (newgrade <= 150 && newgrade > 0)
 	{
