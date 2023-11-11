@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:23:06 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/08 21:30:58 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:10:00 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ int main()
 		AForm *form = new ShrubberyCreationForm("home");
 		
 		form->beSigned(first);
-		// form->execute(first);
 		first.executeForm(*form);
-		// cout << first << endl;
-		// cout << *form << endl;
 		cout << endl;
 		Bureaucrat akhnouch("ONE", 30);
 		AForm *cin = new RobotomyRequestForm("THE_ONE");

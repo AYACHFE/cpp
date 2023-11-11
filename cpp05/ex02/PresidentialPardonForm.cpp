@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:05:34 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/08 21:24:16 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:05:33 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ PresidentialPardonForm::PresidentialPardonForm(string target) : AForm("RobotomyR
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
 	if (getcheck())
 	{
-		if (getexec() >= executor.getGrade() && getgrade() >= executor.getGrade())
+		if (getexec() >= executor.getGrade())
 		{
 			cout << "that " << target << " has been pardoned by Zaphod Beeblebrox." << endl;
 			return ;

@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:56:24 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/08 21:14:10 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:28:42 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ AForm::AForm(string newname, int newgrade, int newexec) : name(newname) , grade(
 
 	if (newgrade <= 150 && newgrade > 0)
 	{
-		cout << "GRADE GRANTED" << endl;
+		// cout << "GRADE GRANTED" << endl;
 		return ;
 	}
 	if (newgrade > 150)

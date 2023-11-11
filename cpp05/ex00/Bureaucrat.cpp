@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:33:08 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/07 10:59:51 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:06:31 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@ const char* Bureaucrat::GradeTooHighException::what() const throw(){
 }
 
 void	Bureaucrat::increment_grade() {
-	if ((grade + 1) > 150)
-		throw (GradeTooLowException());
-	else
-		grade++;
-}
-
-void	Bureaucrat::decrement_grade() {
 	if ((grade - 1) <= 0)
 		throw (GradeTooHighException());
 	else
 		grade--;
+}
+
+void	Bureaucrat::decrement_grade() {
+	if ((grade + 1) > 150)
+		throw (GradeTooLowException());
+	else
+		grade++;
 }

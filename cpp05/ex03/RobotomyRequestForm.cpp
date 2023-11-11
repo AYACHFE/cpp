@@ -6,20 +6,24 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:05:01 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/09 09:41:26 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:45:21 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
-
+#include <random>
+#include <cstdlib>
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 
+	srand(time(NULL));
+  	int randomNumber = rand();
+
+	// cout << randomNumber << "   " << RAND_MAX / 2 << endl;
 	if (getcheck())
 	{
-		if (getexec() >= executor.getGrade() && getgrade() >= executor.getGrade())
+		if ((randomNumber % 2 == 1) && getexec() >= executor.getGrade())
 		{
-			cout << "The " << target << " has been robotomized \
-successfully 50% of the time" << endl;
+			cout << "The " << target << " has been robotomized successfully 50% of the time" << endl;
 			return ;
 		}
 		else
@@ -27,10 +31,10 @@ successfully 50% of the time" << endl;
 	}
 }
 
-RobotomyRequestForm::RobotomyRequestForm() : Form("RobotomyRequestForm", 72, 45) {
+RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45) {
 
 }
-RobotomyRequestForm::RobotomyRequestForm(string target) : Form("RobotomyRequestForm", 72, 45) ,target(target){
+RobotomyRequestForm::RobotomyRequestForm(string target) : AForm("RobotomyRequestForm", 72, 45) ,target(target){
 
 }
 

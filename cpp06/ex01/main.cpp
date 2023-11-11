@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Intern.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 21:54:59 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/09 17:19:06 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/10 10:56:39 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/10 13:29:16 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "Serializer.hpp"
 
-#include "ShrubberyCreationForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "AForm.hpp"
-#include <iostream>
+int main()
+{	
+	Data	ay;
+	ay.i = 10;
+	ay.str = "ayac";
 
-class Form;
-class Bureaucrat;
-
-class Intern {
-	public:
-		AForm	*my_Shrubbery(string target);
-		AForm	*my_Robot(string target);
-		AForm	*my_President(string target);
-		AForm	*makeForm(string name, string target);
-};
+	cout << ay.i << endl;
+	cout << ay.str << endl;
+	unsigned long address = Serializer::serialize(&ay);
+	cout << address << endl;
+	ay = *Serializer::deserialize(address);
+	cout << ay.i << endl;
+	cout << ay.str << endl;
+}

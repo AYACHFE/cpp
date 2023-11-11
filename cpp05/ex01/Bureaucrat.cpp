@@ -6,13 +6,13 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:33:08 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/07 14:20:30 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:05:17 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : grade(1) {
+Bureaucrat::Bureaucrat() : grade(150) {
 	// cout << "ZZZZzzz .. ." << endl;
 }
 
@@ -66,17 +66,17 @@ const char* Bureaucrat::GradeTooHighException::what() const throw(){
 }
 
 void	Bureaucrat::increment_grade() {
-	if ((grade + 1) > 150)
-		throw (GradeTooLowException());
-	else
-		grade++;
-}
-
-void	Bureaucrat::decrement_grade() {
 	if ((grade - 1) <= 0)
 		throw (GradeTooHighException());
 	else
 		grade--;
+}
+
+void	Bureaucrat::decrement_grade() {
+	if ((grade + 1) > 150)
+		throw (GradeTooLowException());
+	else
+		grade++;
 }
 
 void	Bureaucrat::signForm(Form &form) {

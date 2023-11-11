@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                          :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:56:24 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/08 21:14:10 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:28:42 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form() : grade(1), check(false), exec(1) {
+AForm::AForm() : grade(1), check(false), exec(1) {
 
 }
 
-Form::Form(string newname, int newgrade, int newexec) : name(newname) , grade(newgrade), check(false), exec(newexec) {
+AForm::AForm(string newname, int newgrade, int newexec) : name(newname) , grade(newgrade), check(false), exec(newexec) {
 
 	if (newgrade <= 150 && newgrade > 0)
 	{
-		cout << "GRADE GRANTED" << endl;
+		// cout << "GRADE GRANTED" << endl;
 		return ;
 	}
 	if (newgrade > 150)
@@ -29,63 +29,59 @@ Form::Form(string newname, int newgrade, int newexec) : name(newname) , grade(ne
 		throw (GradeTooHighException());
 }
 
-Form::Form(const Form &copy) : name(copy.name) , grade(copy.grade) {
+AForm::AForm(const AForm &copy) : name(copy.name) , grade(copy.grade) {
 	
 }
 
-Form::~Form() {
+AForm::~AForm() {
 	
 }
 
-Form &Form::operator=(const Form &newForm) {
-	check = newForm.check;
+AForm &AForm::operator=(const AForm &newAform) {
+	check = newAform.check;
 	return *this;
 }
 
-std::ostream &operator<<(std::ostream &out, Form &sec) {
-	out << "The Form \"" << sec.getname() << "\" REQUIRED AUTHORITY TO BE SIGNED IS \"" << sec.getgrade() << "\"";
+std::ostream &operator<<(std::ostream &out, AForm &sec) {
+	out << "The AFORM \"" << sec.getname() << "\" REQUIRED AUTHORITY TO BE SIGNED IS \"" << sec.getgrade() << "\"";
 	return (out);
 }
 
-string	Form::getname() const {
+string	AForm::getname() const {
 	return (name);
 }
 
-int		Form::getgrade() const{
+int		AForm::getgrade() const{
 	return (grade);
 }
 
-bool	Form::getcheck() const{
+bool	AForm::getcheck() const{
 	return (check);
 }
 
-int		Form::getexec() const{
+int		AForm::getexec() const{
 	return (exec);
 }
 
-void	Form::setcheck(bool newcheck) {
+void	AForm::setcheck(bool newcheck) {
 	check = newcheck;
 }
 
-void	Form::setexec(int newexec) {
+void	AForm::setexec(int newexec) {
 	exec = newexec;
 }
 
-void	Form::beSigned(Bureaucrat &bur) {
+void	AForm::beSigned(Bureaucrat &bur) {
 	int gr = bur.getGrade();
 	if (gr > grade)
-		throw(Form::GradeTooLowException());
+		throw(AForm::GradeTooLowException());
 	check = true;
 }
 
-const char* Form::GradeTooLowException::what() const throw(){
+const char* AForm::GradeTooLowException::what() const throw(){
 	return ("GRADE TO LOW");
 }
 
-const char* Form::GradeTooHighException::what() const throw(){
+const char* AForm::GradeTooHighException::what() const throw(){
 	return ("GRADE TO HIGH");
-}
-
-void Form::execute(Bureaucrat const & executor) const {
-	(void)executor;
 }

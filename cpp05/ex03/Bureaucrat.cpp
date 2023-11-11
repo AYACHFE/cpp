@@ -6,22 +6,22 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:33:08 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/09 09:41:26 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:08:25 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() {
-	// cout << "ZZZZzzz .. ." << endl;
+
 }
 
-Bureaucrat::Bureaucrat(string newname, int newGrade)  :  name(newname)  {
-	// cout << "ZZZZzzz .. ..." << endl;
+Bureaucrat::Bureaucrat(string newname, int newGrade)  :  name(newname) {
+
 	if (newGrade <= 150 && newGrade > 0)
 	{
 		grade = newGrade;
-		cout << "GRADE GRANTED" << endl;
+		// cout << "GRADE GRANTED" << endl;
 		return ;
 	}
 	if (newGrade > 150)
@@ -66,20 +66,20 @@ const char* Bureaucrat::GradeTooHighException::what() const throw(){
 }
 
 void	Bureaucrat::increment_grade() {
-	if ((grade + 1) > 150)
-		throw (GradeTooLowException());
-	else
-		grade++;
-}
-
-void	Bureaucrat::decrement_grade() {
 	if ((grade - 1) <= 0)
 		throw (GradeTooHighException());
 	else
 		grade--;
 }
 
-void	Bureaucrat::signForm(Form &form) {
+void	Bureaucrat::decrement_grade() {
+	if ((grade + 1) > 150)
+		throw (GradeTooLowException());
+	else
+		grade++;
+}
+
+void	Bureaucrat::signForm(AForm &form) {
 	try
 	{
 		form.beSigned(*this);
@@ -91,8 +91,13 @@ void	Bureaucrat::signForm(Form &form) {
 	}
 }
 
-void	Bureaucrat::executeForm(Form const & form) {
-	
-	form.execute(*this);
-	cout << name << " executed " << form.getname() << endl;
+void	Bureaucrat::executeForm(AForm const & form) {
+
+	try {
+		form.execute(*this);
+		cout << name << " executed " << form.getname() << endl;
+	}
+	catch(int) {
+		cout << name << " didn't execute " << form.getname() << endl;
+	}
 }

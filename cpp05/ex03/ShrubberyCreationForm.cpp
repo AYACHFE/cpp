@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:04:36 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/09 09:41:26 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:25:49 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	
 	if (getcheck())
 	{
-		if (getexec() > executor.getGrade() && getgrade() > executor.getGrade())
+		if (getexec() > executor.getGrade())
 		{
 			std::ofstream tree;
 			tree.open(target + "_shrubbery");
@@ -63,6 +63,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 				tree << " " << endl;
 				tree << "------------------------------------------------ " << endl;
 				tree.close();
+				cout << "Tree is in '" << target + "_shrubbery" << " FILE" << endl; 
 			}
 			else
 				std::cerr << "file coudn't open" << endl;
@@ -73,12 +74,12 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	}
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm() : Form("ShrubberyCreationForm", 145, 137) {
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137) {
 	
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(string target) : Form("ShrubberyCreationForm", 145, 137) ,target(target) {
-	// setexec(137);
+ShrubberyCreationForm::ShrubberyCreationForm(string target) : AForm("ShrubberyCreationForm", 145, 137) ,target(target) {
+
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm &copy) {

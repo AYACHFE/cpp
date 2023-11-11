@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Intern.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 21:54:59 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/09 17:19:06 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/09 10:10:26 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/09 16:02:51 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "ScalarConverter.hpp"
 
-#include "ShrubberyCreationForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "AForm.hpp"
-#include <iostream>
-
-class Form;
-class Bureaucrat;
-
-class Intern {
-	public:
-		AForm	*my_Shrubbery(string target);
-		AForm	*my_Robot(string target);
-		AForm	*my_President(string target);
-		AForm	*makeForm(string name, string target);
-};
+int main()
+{
+	string input;
+	while (1) {
+		cout << "ENTER THE VALUE TO CONVERT > " ;
+		getline(std::cin,input);
+		if (std::cin.eof())
+			break ;
+		if (!input.length())
+			continue;
+		ScalarConverter::convert(input);
+	}
+}

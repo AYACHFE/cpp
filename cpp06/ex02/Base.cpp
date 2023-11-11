@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:22:12 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/10 15:08:32 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/11 14:47:37 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,35 @@ Base *Base::generate(void) {
 	return (NULL);
 }
 
-// void Base::identify(Base* p) {
-
-// }
-
-void Base::identify(Base& p) {
-	if (A == p)
+void Base::identify(Base* p) {
+	if (dynamic_cast<A *>(p) != NULL)
+		cout << "the type is 'A'" << endl;
+	else if (dynamic_cast<A *>(p) == NULL)
+		cout << "unknown type" << endl;
+	if (dynamic_cast<B *>(p) != NULL)
+		cout << "the type is 'B'" << endl;
+	else if (dynamic_cast<B *>(p) == NULL)
+		cout << "unknown type" << endl;
+	if (dynamic_cast<C *>(p) != NULL)
+		cout << "the type is 'C'" << endl;
+	else if (dynamic_cast<C *>(p) == NULL)
+		cout << "unknown type" << endl;
 }
+
+// void Base::identify(Base& p) {
+	
+// 	// try {
+// 		if (dynamic_cast<A &>(p) != NULL)
+// 			cout << "the type is 'A'" << endl;
+// 		else if (dynamic_cast<B &>(p) != NULL)
+// 			cout << "the type is 'B'" << endl;
+// 		else if (dynamic_cast<C &>(p) != NULL)
+// 			cout << "the type is 'C'" << endl;
+// 	// }
+// 	// catch (std::bad_cast &exception) {
+// 	// 	std::cerr << exception.what() << endl;
+// 	// }
+// }
 
 Base::~Base() {
 	

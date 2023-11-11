@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Intern.hpp                                         :+:      :+:    :+:   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 21:54:59 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/09 17:19:06 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/10 10:58:45 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/10 11:49:30 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-
-#include "ShrubberyCreationForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "AForm.hpp"
 #include <iostream>
+using std::cout;
+using std::endl;
+using std::string;
 
-class Form;
-class Bureaucrat;
+typedef struct s_Data {
+	int i;
+	string str;
+} Data;
 
-class Intern {
+class Serializer {
 	public:
-		AForm	*my_Shrubbery(string target);
-		AForm	*my_Robot(string target);
-		AForm	*my_President(string target);
-		AForm	*makeForm(string name, string target);
+		static uintptr_t serialize(Data* ptr);
+		static Data* deserialize(uintptr_t raw);
 };

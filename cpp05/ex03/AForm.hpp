@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                          :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Form_HPP
-#define Form_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include <iostream>
 #include "Bureaucrat.hpp"
@@ -22,19 +22,19 @@ using std::endl;
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 		const string name;
 		const int grade;
 		bool check;
 		int exec;
 	public:
 	//ORTHODOX
-		Form();
-		Form(const Form &copy);
-		~Form();
-		Form &operator=(const Form &newForm);
+		AForm();
+		AForm(const AForm &copy);
+		~AForm();
+		AForm &operator=(const AForm &newAform);
 	//
-		Form(string newname, int newgrade, int newexec);
+		AForm(string newname, int newgrade, int newexec);
 		string	getname() const;
 		int		getgrade() const;
 		bool	getcheck() const;
@@ -45,19 +45,19 @@ class Form {
 		class GradeTooLowException;
 		class GradeTooHighException;
 
-		virtual void execute(Bureaucrat const & executor) const;
+		virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
-class Form::GradeTooLowException :public std::exception {
+class AForm::GradeTooLowException :public std::exception {
 	public:
 		virtual const char* what() const throw();
 };
 
-class Form::GradeTooHighException :public std::exception {
+class AForm::GradeTooHighException :public std::exception {
 	public:
 		virtual const char* what() const throw();
 };
 
-std::ostream &operator<<(std::ostream &out, Form &sec);
+std::ostream &operator<<(std::ostream &out, AForm &sec);
 
 #endif
