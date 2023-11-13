@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:22:12 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/11 19:59:19 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:46:00 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,19 @@ void Base::identify(Base& p) {
 	catch (std::bad_cast &exception) {
 		std::cerr << exception.what() << endl;
 	}
+}
+
+//ORTHODOX
+Base::Base() {
+}
+
+Base::Base(Base &src) {
+	*this = src;
+}
+
+Base& Base::operator=(Base &src) {
+	static_cast<void>(src);
+	return (*this);
 }
 
 Base::~Base() {

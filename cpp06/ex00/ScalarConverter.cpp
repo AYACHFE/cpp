@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 10:12:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/12 10:15:28 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:43:37 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,19 @@ void ScalarConverter::convert(string val) {
 	}
 }
 
-// char: '*'
-// int: 42
-// float: 42.0f
-// double: 42.0
+//Orthodox
+ScalarConverter::ScalarConverter() {
+}
+
+ScalarConverter::ScalarConverter(ScalarConverter &copy) {
+	*this = copy;
+}
+
+ScalarConverter::~ScalarConverter() {
+}
+
+ScalarConverter &ScalarConverter::operator=(ScalarConverter &tmp) {
+	static_cast<void>(tmp);
+	return *this;
+}
+//

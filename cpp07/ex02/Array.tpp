@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 11:51:32 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/13 12:16:27 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:17:35 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 template<typename type>
 Array<type>::Array(Array<type> &copy) {
-	if (this != &copy) {
-		n = copy.n;
-		tab = new type[n];
-		for (size_t i = 0; i < n ; i++)
-			tab[i] = copy.tab[i];
-	}
+
+	n = copy.n;
+	tab = new type[n];
+	for (size_t i = 0; i < 5 ; i++)
+		tab[i] = copy.tab[i];
 }
 
 template<typename type>

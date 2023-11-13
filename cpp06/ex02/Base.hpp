@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:09:55 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/11 14:16:58 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:44:56 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,15 @@ using std::string;
 
 class Base {
 	public:
+	//ORTHODOX
+		Base();
+		Base(Base &src);
+		Base& operator=(Base &src);
+		virtual ~Base();
+	//
 		Base *generate(void);
 		void identify(Base* p);
 		void identify(Base& p);
-		virtual ~Base();
 };
 
 class A :public Base {
