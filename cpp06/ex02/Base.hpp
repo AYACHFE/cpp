@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:09:55 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/13 13:44:56 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:52:25 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ using std::cout;
 using std::endl;
 using std::string;
 
+
 class Base {
 	public:
 	//ORTHODOX
@@ -25,10 +26,11 @@ class Base {
 		Base& operator=(Base &src);
 		virtual ~Base();
 	//
-		Base *generate(void);
-		void identify(Base* p);
-		void identify(Base& p);
 };
+
+Base *generate(void);
+void identify(Base* p);
+void identify(Base& p);
 
 class A :public Base {
 };

@@ -6,13 +6,13 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:22:12 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/13 13:46:00 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:51:06 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
 
-Base *Base::generate(void) {
+Base *generate(void) {
 	
 	srand(time(NULL));
 	int r = rand() % 3;
@@ -26,7 +26,9 @@ Base *Base::generate(void) {
 	return (NULL);
 }
 
-void Base::identify(Base* p) {
+void identify(Base* p) {
+	if (!p)
+		return ;
 	if (dynamic_cast<A *>(p) != NULL)
 		cout << "the type is 'A'" << endl;
 	else if (dynamic_cast<A *>(p) == NULL)
@@ -41,13 +43,23 @@ void Base::identify(Base* p) {
 		cout << "unknown type" << endl;
 }
 
-void Base::identify(Base& p) {
+void identify(Base& p) {
 	
 	try {
 		p = dynamic_cast<A &>(p);
 			cout << "the type is 'A'" << endl;
+	}
+	catch (std::bad_cast &exception) {
+		std::cerr << exception.what() << endl;
+	}
+	try {
 		p = dynamic_cast<B &>(p);
 			cout << "the type is 'B'" << endl;
+	}
+	catch (std::bad_cast &exception) {
+		std::cerr << exception.what() << endl;
+	}
+	try {
 		p = dynamic_cast<C &>(p);
 			cout << "the type is 'C'" << endl;
 	}
