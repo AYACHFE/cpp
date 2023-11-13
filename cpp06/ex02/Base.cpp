@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:22:12 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/11 14:47:37 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/11 19:59:19 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ void Base::identify(Base* p) {
 		cout << "unknown type" << endl;
 }
 
-// void Base::identify(Base& p) {
+void Base::identify(Base& p) {
 	
-// 	// try {
-// 		if (dynamic_cast<A &>(p) != NULL)
-// 			cout << "the type is 'A'" << endl;
-// 		else if (dynamic_cast<B &>(p) != NULL)
-// 			cout << "the type is 'B'" << endl;
-// 		else if (dynamic_cast<C &>(p) != NULL)
-// 			cout << "the type is 'C'" << endl;
-// 	// }
-// 	// catch (std::bad_cast &exception) {
-// 	// 	std::cerr << exception.what() << endl;
-// 	// }
-// }
+	try {
+		p = dynamic_cast<A &>(p);
+			cout << "the type is 'A'" << endl;
+		p = dynamic_cast<B &>(p);
+			cout << "the type is 'B'" << endl;
+		p = dynamic_cast<C &>(p);
+			cout << "the type is 'C'" << endl;
+	}
+	catch (std::bad_cast &exception) {
+		std::cerr << exception.what() << endl;
+	}
+}
 
 Base::~Base() {
 	

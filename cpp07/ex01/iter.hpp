@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 13:30:08 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/11 21:12:02 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/12 10:34:42 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/12 11:29:10 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
+#pragma once
 
-int main()
+#include <iostream>
+using std::cout;
+using std::endl;
+using std::string;
+
+template<typename type>
+void funct(type array) {
+	cout << array << " | ";
+}
+
+template<typename type>
+void	iter(type *array, int len, void funct(type))
 {
-	Base *bs = new Base();
-	Base bts;
-	Base &bt = bts;
-	bs->identify(bs->generate());
-	cout << "-----------\n";
-	bt.identify(bt.generate());
+	int i = 0;
+	while (i < len)
+		funct(array[i++]);
 }

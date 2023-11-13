@@ -5,19 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 13:30:08 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/11 21:12:02 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/12 11:31:38 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/13 12:17:35 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
+#include "Array.hpp"
 
-int main()
-{
-	Base *bs = new Base();
-	Base bts;
-	Base &bt = bts;
-	bs->identify(bs->generate());
-	cout << "-----------\n";
-	bt.identify(bt.generate());
+int main() {
+	
+	Array<string> arr(5);
+	arr.fill("ayac");
+	arr.getpos(0) = "hello";
+	for (int i = 0;i < 5; i++)
+		cout << arr.getpos(i) << endl;
+
+	cout << endl;
+	Array<string> copy(arr);
+	arr.getpos(1) = "there";
+	for (int i = 0;i < 5; i++)
+		cout << copy.getpos(i) << endl;
 }
