@@ -6,30 +6,27 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:56:24 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/09 14:28:42 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/15 09:57:55 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
-AForm::AForm() : grade(1), check(false), exec(1) {
+AForm::AForm() : grade(150), check(false), exec(150) {
 
 }
 
 AForm::AForm(string newname, int newgrade, int newexec) : name(newname) , grade(newgrade), check(false), exec(newexec) {
 
-	if (newgrade <= 150 && newgrade > 0)
-	{
-		// cout << "GRADE GRANTED" << endl;
+	if ((newgrade <= 150 && newgrade > 0) && (newexec <= 150 && newexec > 0))
 		return ;
-	}
 	if (newgrade > 150)
 		throw (GradeTooLowException());
 	else
 		throw (GradeTooHighException());
 }
 
-AForm::AForm(const AForm &copy) : name(copy.name) , grade(copy.grade) {
+AForm::AForm(const AForm &copy) : name(copy.name) , grade(copy.grade) , exec(copy.exec){
 	
 }
 
@@ -43,7 +40,8 @@ AForm &AForm::operator=(const AForm &newAform) {
 }
 
 std::ostream &operator<<(std::ostream &out, AForm &sec) {
-	out << "The AFORM \"" << sec.getname() << "\" REQUIRED AUTHORITY TO BE SIGNED IS \"" << sec.getgrade() << "\"";
+	out << "The FORM \"" << sec.getname() << "\" REQUIRED AUTHORITY TO BE SIGNED IS \"" <<\
+	 sec.getgrade()  << "\""<< " AND TO BE EXECUTED \"" << sec.getexec();
 	return (out);
 }
 
@@ -65,10 +63,6 @@ int		AForm::getexec() const{
 
 void	AForm::setcheck(bool newcheck) {
 	check = newcheck;
-}
-
-void	AForm::setexec(int newexec) {
-	exec = newexec;
 }
 
 void	AForm::beSigned(Bureaucrat &bur) {

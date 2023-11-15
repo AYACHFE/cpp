@@ -6,12 +6,11 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:04:36 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/09 14:25:49 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:12:23 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
-
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	
@@ -75,7 +74,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137) {
-	
+
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(string target) : AForm("ShrubberyCreationForm", 145, 137) ,target(target) {
@@ -87,7 +86,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm &copy) {
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
-	
+
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm &shru) {

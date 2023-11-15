@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:23:06 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/09 17:04:14 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/15 10:44:08 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,21 @@
 int main()
 {
 	try {
-		// Bureaucrat first("AYAC", 136);
-		// AForm *form = new ShrubberyCreationForm("home");
+		Intern someRandomIntern;
+		AForm* rrf;
+		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 		
-		// form->beSigned(first);
-		// first.executeForm(*form);
-		// cout << endl;
-		// Bureaucrat akhnouch("ONE", 30);
-		// AForm *cin = new RobotomyRequestForm("THE_ONE");
+		Intern RandomIntern;
+		AForm* rr;
+		rr = RandomIntern.makeForm("presidential pardon", "lee");
 		
-		// cin->beSigned(akhnouch);
-		// cin->execute(akhnouch);
-		// cout << endl;
-		// Bureaucrat Zaphod("FR", 4);
-		// AForm *pass = new PresidentialPardonForm("cheng");
+		Intern myIntern;
+		AForm* r;
+		r = myIntern.makeForm("pardon", "random");
 		
-		// pass->beSigned(Zaphod);
-		// pass->execute(Zaphod);
-		//Stack Unwinding
-			Intern someRandomIntern;
-			AForm* rrf;
-			rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-
+		Intern sh;
+		AForm* form;
+		form = sh.makeForm("shrubbery creation", "right");
 	}
 	catch(std::exception& except) {
 		std::cerr << except.what() << endl;

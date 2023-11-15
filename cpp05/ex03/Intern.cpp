@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 21:56:13 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/09 17:47:48 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/15 10:46:40 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ AForm	*Intern::makeForm(string name, string target) {
 		&Intern::my_Robot,
 		&Intern::my_President
 	};
-	// AForm *(Intern::*intern[3])(string) = {
-	// 	&Intern::my_Shrubbery,
-	// 	&Intern::my_Robot,
-	// 	&Intern::my_President
-	// };
 	string tab[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	int i = 0;
 	while (i < 3) {
@@ -49,3 +44,17 @@ AForm	*Intern::makeForm(string name, string target) {
 	cout << "Intern coudn't create " << target << endl;
 	return (NULL);
 }
+
+Intern::Intern() {
+
+}
+
+Intern::Intern(Intern const &copy) {
+	*this = copy;
+}
+
+Intern &Intern::operator=(Intern const &copy) {
+	(void)copy;
+	return (*this);
+}
+Intern::~Intern() {}

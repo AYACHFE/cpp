@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:22:12 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/13 15:51:06 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:10:30 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ Base *generate(void) {
 }
 
 void identify(Base* p) {
-	if (!p)
-		return ;
+
 	if (dynamic_cast<A *>(p) != NULL)
 		cout << "the type is 'A'" << endl;
 	else if (dynamic_cast<A *>(p) == NULL)

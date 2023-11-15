@@ -6,22 +6,21 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:33:08 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/10 11:06:31 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/15 10:37:09 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() {
-	// cout << "ZZZZzzz .. ." << endl;
+Bureaucrat::Bureaucrat() : grade(150) {
+
 }
 
 Bureaucrat::Bureaucrat(string newname, int newGrade)  : name(newname) {
-	// cout << "ZZZZzzz .. ..." << endl;
+
 	if (newGrade <= 150 && newGrade > 0)
 	{
 		grade = newGrade;
-		cout << "GRADE GRANTED" << endl;
 		return ;
 	}
 	if (newGrade > 150)

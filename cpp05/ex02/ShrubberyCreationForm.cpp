@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:04:36 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/09 14:25:49 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/15 10:34:17 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	
 	if (getcheck())
 	{
-		if (getexec() > executor.getGrade())
+		if (getexec() >= executor.getGrade())
 		{
 			std::ofstream tree;
 			tree.open(target + "_shrubbery");

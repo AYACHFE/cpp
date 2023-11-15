@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:56:36 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/08 21:07:08 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/15 10:27:42 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ class AForm {
 		const string name;
 		const int grade;
 		bool check;
-		int exec;
+		const int exec;
 	public:
 	//ORTHODOX
 		AForm();
 		AForm(const AForm &copy);
-		~AForm();
+		virtual ~AForm();
 		AForm &operator=(const AForm &newAform);
 	//
 		AForm(string newname, int newgrade, int newexec);
@@ -40,7 +40,6 @@ class AForm {
 		bool	getcheck() const;
 		int		getexec() const;
 		void	setcheck(bool newcheck);
-		void	setexec(int newexec);
 		void	beSigned(Bureaucrat &bur);
 		class GradeTooLowException;
 		class GradeTooHighException;

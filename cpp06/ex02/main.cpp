@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 13:30:08 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/13 15:53:59 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:55:22 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int main()
 {
 	Base *random = generate();
-	identify(random);
+	identify(NULL);
 	identify(*random);
 }

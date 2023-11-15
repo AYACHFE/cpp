@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:56:36 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/07 12:59:42 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/15 09:27:15 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Form {
 		const string name;
 		const int grade;
 		bool check;
-		int exec;
+		const int exec;
 	public:
 	//ORTHODOX
 		Form();
@@ -34,9 +34,10 @@ class Form {
 		~Form();
 		Form &operator=(const Form &newform);
 	//
-		Form(string newname, int newgrade);
+		Form(string newname, int newgrade, int newexec);
 		string	getname();
 		int		getgrade();
+		int		getexec();
 		bool	getcheck();
 		void	beSigned(Bureaucrat &bur);
 		class GradeTooLowException;

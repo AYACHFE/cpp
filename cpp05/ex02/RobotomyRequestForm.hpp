@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:05:14 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/08 21:45:45 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:08:30 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include <iostream>
+#include <random>
+
 using std::string;
 using std::cout;
 using std::endl; 

@@ -6,13 +6,13 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:33:08 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/10 11:08:25 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:10:04 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() {
+Bureaucrat::Bureaucrat() : grade(150) {
 
 }
 
@@ -21,7 +21,6 @@ Bureaucrat::Bureaucrat(string newname, int newGrade)  :  name(newname) {
 	if (newGrade <= 150 && newGrade > 0)
 	{
 		grade = newGrade;
-		// cout << "GRADE GRANTED" << endl;
 		return ;
 	}
 	if (newGrade > 150)
@@ -37,7 +36,6 @@ Bureaucrat::~Bureaucrat() {
 Bureaucrat::Bureaucrat(const Bureaucrat &copy)  : name(copy.name) , grade(copy.grade) {
 
 }
-
 
 string Bureaucrat::getName() const{
 	return (name);

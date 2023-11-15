@@ -6,21 +6,21 @@
 #    By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 08:24:39 by aachfenn          #+#    #+#              #
-#    Updated: 2023/11/06 15:39:16 by aachfenn         ###   ########.fr        #
+#    Updated: 2023/11/14 09:27:08 by aachfenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC     = main.cpp Bureaucrat.cpp
+SRC     = $(wildcard *.cpp)
 
 CXXFLAGS   = -Wall -Wextra -Werror -std=c++98
 
-OBJS    = main.o Bureaucrat.o
+OBJS    = ${SRC:.cpp=.o}
 
 RM      = rm -f
 
-NAME    = exxxx
+NAME    = exxx
 
-${NAME} :	${OBJS} Bureaucrat.hpp
+${NAME} :	${OBJS} $(wildcard *.hpp)
 		c++ ${CXXFLAGS} ${OBJS} -o ${NAME}
 
 all     : ${NAME}

@@ -6,32 +6,27 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 19:56:24 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/07 14:16:54 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/15 09:57:31 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form() : grade(1) , exec(1) {
-	// cout << "FOrm :: ZZzz ,.,., . .." << endl;
+Form::Form() : grade(150) , exec(150) {
+
 }
 
-Form::Form(string newname, int newgrade) : name(newname) , grade(newgrade), check(false) {
-	// cout << "Form :: ZZzz ,.,., . .." << endl;
-	(void)exec;
-	if (newgrade <= 150 && newgrade > 0)
-	{
-		// grade = newgrade;
-		cout << "GRADE GRANTED" << endl;
+Form::Form(string newname, int newgrade, int newexec) : name(newname) , grade(newgrade), check(false), exec(newexec) {
+
+	if ((newgrade <= 150 && newgrade > 0) && (newexec <= 150 && newexec > 0))
 		return ;
-	}
 	if (newgrade > 150)
 		throw (GradeTooLowException());
 	else
 		throw (GradeTooHighException());
 }
 
-Form::Form(const Form &copy) : name(copy.name) , grade(copy.grade) {
+Form::Form(const Form &copy) : name(copy.name) , grade(copy.grade), exec(copy.exec) {
 	
 }
 
@@ -45,7 +40,8 @@ Form &Form::operator=(const Form &newform) {
 }
 
 std::ostream &operator<<(std::ostream &out, Form &sec) {
-	out << "The FORM \"" << sec.getname() << "\" REQUIRED AUTHORITY TO BE SIGNED IS \"" << sec.getgrade() << "\"";
+	out << "The FORM \"" << sec.getname() << "\" REQUIRED AUTHORITY TO BE SIGNED IS \"" <<\
+	 sec.getgrade()  << "\""<< " AND TO BE EXECUTED \"" << sec.getexec();
 	return (out);
 }
 
@@ -59,6 +55,10 @@ int		Form::getgrade() {
 
 bool	Form::getcheck() {
 	return (check);
+}
+
+int		Form::getexec() {
+	return (exec);
 }
 
 void	Form::beSigned(Bureaucrat &bur) {
