@@ -6,8 +6,16 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:24:52 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/13 13:29:51 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:20:58 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
+#include "easyfind.tpp"
+
+int main()
+{
+	std::array<int, 10> tab = { 1, 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 };
+	easyfind<int, 10>(tab.data(), 8);
+}
+ 

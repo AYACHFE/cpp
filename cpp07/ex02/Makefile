@@ -6,7 +6,7 @@
 #    By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/09 10:11:11 by aachfenn          #+#    #+#              #
-#    Updated: 2023/11/13 11:14:09 by aachfenn         ###   ########.fr        #
+#    Updated: 2023/11/17 10:47:56 by aachfenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM      = rm -f
 
 NAME    = exxx
 
-${NAME} :	${OBJS} $(wildcard *.hpp)
+${NAME} :	${OBJS} $(wildcard *.hpp) $(wildcard *.tpp)
 		c++ ${CXXFLAGS} ${OBJS} -o ${NAME}
 
 all     : ${NAME}

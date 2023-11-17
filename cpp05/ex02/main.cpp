@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:23:06 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/15 11:06:40 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:13:04 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ int main()
 	try {
 		Bureaucrat first("AYAC", 136);
 		form = new ShrubberyCreationForm("home");
+		ShrubberyCreationForm ls;
 		
+		ShrubberyCreationForm a(ls);
+
+		a.
 		form->beSigned(first);
 		first.executeForm(*form);
 		cout << endl;

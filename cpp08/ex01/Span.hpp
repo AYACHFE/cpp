@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 10:56:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/17 11:45:11 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/16 12:25:20 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/16 13:30:59 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Serializer.hpp"
+#pragma once
 
-int main()
-{	
-	Data	ay;
-	ay.i = 10;
-	ay.str = "ayac";
+#include <iostream>
+#include <vector>
+#include <array>
 
-	cout << ay.i << endl;
-	cout << ay.str << endl;
-	cout << "ay : " << &ay << endl;
-	unsigned long address = Serializer::serialize(&ay);
-	cout << address << endl;
-	ay = *Serializer::deserialize(address);
-	cout << ay.i << endl;
-	cout << ay.str << endl;
-}
+using std::cout;
+using std::endl;
+using std::string;
+
+class Span {
+		unsigned int N;
+		std::vector<int> tab;
+		int counter;
+	public:
+	//orthodox
+		Span();
+	//
+		Span(int nu);
+		void	addNumber(int to_add);
+		int		shortestSpan();
+		int		longestSpan();
+};

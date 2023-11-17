@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 11:51:32 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/13 13:17:35 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:50:27 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,10 @@ void Array<type>::settab(size_t index,type data) {
 }
 
 template<typename type>
-Array<type> &Array<type>::operator[](size_t index) {
+type &Array<type>::operator[](size_t index) {
 	
-	try {
-		if (index >= n)
-			throw (std::exception());
-	}	
-	catch(std::exception &except) {
-		std::cerr << except.what() << endl;
-	}
+	if (index >= n)
+		throw (std::exception());
 	return (tab[index]);
 }
 
@@ -68,14 +63,14 @@ template<typename type>
 Array<type>::Array() : n(10) {
 	
 	tab = new type[n];
-	cout << "Constructor called su" << endl;
+	// cout << "Constructor called su" << endl;
 }
 
 template<typename type>
 Array<type>::Array(size_t n_) : n(n_){
 
 	tab = new type[n];
-	cout << "Constructor called succcccc" << endl;
+	// cout << "Constructor called succcccc" << endl;
 }
 
 template<typename type>

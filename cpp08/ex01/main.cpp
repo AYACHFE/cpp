@@ -5,25 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 10:56:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/17 11:45:11 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/16 12:24:52 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/17 09:41:29 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Serializer.hpp"
+#include "Span.hpp"
 
 int main()
-{	
-	Data	ay;
-	ay.i = 10;
-	ay.str = "ayac";
-
-	cout << ay.i << endl;
-	cout << ay.str << endl;
-	cout << "ay : " << &ay << endl;
-	unsigned long address = Serializer::serialize(&ay);
-	cout << address << endl;
-	ay = *Serializer::deserialize(address);
-	cout << ay.i << endl;
-	cout << ay.str << endl;
+{
+	Span sp = Span(5);
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+	return 0;
 }

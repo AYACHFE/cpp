@@ -5,25 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 10:56:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/17 11:45:11 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/17 09:56:38 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/17 12:25:05 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Serializer.hpp"
+#include "MutantStack.hpp"
 
 int main()
-{	
-	Data	ay;
-	ay.i = 10;
-	ay.str = "ayac";
-
-	cout << ay.i << endl;
-	cout << ay.str << endl;
-	cout << "ay : " << &ay << endl;
-	unsigned long address = Serializer::serialize(&ay);
-	cout << address << endl;
-	ay = *Serializer::deserialize(address);
-	cout << ay.i << endl;
-	cout << ay.str << endl;
+{
+	MutantStack<int> mstack;
+	mstack.push(5);
+	mstack.push(17);
+	std::cout << mstack.top() << std::endl;
+	mstack.pop();
+	std::cout << mstack.size() << std::endl;
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	//[...]
+	mstack.push(0);
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
+	// std::stack<int> s(mstack);
+	return 0;
 }

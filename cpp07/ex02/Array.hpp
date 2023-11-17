@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 11:32:29 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/13 12:07:17 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:28:19 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Array {
 		~Array();
 	//
 		Array(size_t n);
-		Array<type> &operator[](size_t index);
+		type &operator[](size_t index);
 		void settab(size_t index,type data);
 		void fill(type data);
 		type &getpos(size_t index);
