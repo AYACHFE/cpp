@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/17 11:45:11 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:11:24 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int main()
 	cout << "ay : " << &ay << endl;
 	unsigned long address = Serializer::serialize(&ay);
 	cout << address << endl;
-	ay = *Serializer::deserialize(address);
-	cout << ay.i << endl;
-	cout << ay.str << endl;
+	Data alt;
+	alt = *Serializer::deserialize(address);
+	cout << alt.i << endl;
+	cout << alt.str << endl;
 }

@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:58:45 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/13 13:40:42 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:05:36 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ typedef struct s_Data {
 } Data;
 
 class Serializer {
+		Serializer();
 	public:
 	// ORthodox
-		Serializer();
 		Serializer(Serializer &src);
 		~Serializer();
 		Serializer& operator=(Serializer &src);

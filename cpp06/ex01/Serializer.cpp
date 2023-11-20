@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:30:55 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/13 13:42:19 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:09:41 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ Serializer::~Serializer() {
 }
 
 Serializer& Serializer::operator=(Serializer &src) {
-	static_cast<void>(src);
+	if (this == &src)
+		return (*this);
 	return (*this);
 }

@@ -6,13 +6,16 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 10:12:19 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/17 13:05:21 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:26:20 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <cmath>
+#include <iomanip>
+#include <cfloat>
 
 using std::cout;
 using std::endl;

@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:22:12 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/14 13:10:30 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:10:07 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ Base::Base(Base &src) {
 }
 
 Base& Base::operator=(Base &src) {
-	static_cast<void>(src);
+	if (this == &src)
+		return (*this);
 	return (*this);
 }
 
