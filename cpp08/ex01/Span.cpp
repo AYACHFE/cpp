@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 12:25:19 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/17 09:43:01 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:58:18 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		Span::shortestSpan() {
 	unsigned int i = 0;
 	unsigned int j = 0;
 	int shortest = tab[0];
+
 	while (i < N)
 	{
 		j = 0;

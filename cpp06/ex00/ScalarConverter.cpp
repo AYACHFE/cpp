@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 10:12:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/20 15:49:02 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:07:25 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@ void	error() {
 	cout << "double: nan" << endl;
 }
 
+bool my_inf(double nbr, int check) {
+
+	std::stringstream stream;
+	if (check == 1)
+		stream << static_cast<float>(nbr);
+	else
+		stream << nbr;
+	string tmp = stream.str();
+	return (tmp == "-inf" || tmp == "inf");
+}
+
 void	to_float(double nbr) {
 	if (!isprint(nbr)) {
 		if (nbr >= 127 || nbr < 0)
@@ -28,9 +39,19 @@ void	to_float(double nbr) {
 	}
 	else
 		cout << "char: '" << static_cast<char>(nbr) << "'" << endl;
-	cout << "int: " << static_cast<int>(nbr) << endl;
-	cout << "float: " << static_cast<float>(nbr) <<  ".0f" << endl;
-	cout << "double: " << nbr <<  ".0" << endl;
+	if (nbr >= INT_MIN && nbr <= INT_MAX)
+		cout << "int: " << static_cast<int>(nbr) << endl;
+	else
+		cout << "int: impossible" << endl;
+	if (!my_inf(nbr, 1)) {
+
+		cout << "float: " << static_cast<float>(nbr) <<  ".0f" << endl;
+		cout << "double: " << nbr <<  ".0" << endl;
+	}
+	else {
+		cout << "float: " << static_cast<float>(nbr) << endl;
+		cout << "double: " << nbr << endl;
+	}
 }
 
 void	to_character(char *tmp) {
@@ -57,15 +78,14 @@ void	to_int_double(string val, double nbr) {
 	if (nbr >= INT_MIN && nbr <= INT_MAX)
 		cout << "int: " << static_cast<int>(nbr) << endl;
 	else
-		cout << "int: inf" << endl;
+		cout << "int: impossible" << endl;
 	if (pos == std::string::npos || nbr == floor(nbr)) {
-		if (nbr >= FLT_MIN && nbr <= FLT_MAX)
+		if (!my_inf(nbr, 1) && nbr <= FLT_MAX)
 			cout << "float: " << static_cast<float>(nbr) <<  ".0f" << endl;
 		else
 			cout << "float: " << static_cast<float>(nbr) << endl;
-		
-		
-		if (nbr >= DBL_MIN && nbr <= DBL_MAX)
+
+		if (!my_inf(nbr, 0) &&nbr <= DBL_MAX)
 			cout << "double: " << nbr <<  ".0" << endl;
 		else
 			cout << "double: " << nbr << endl;
@@ -81,19 +101,20 @@ bool my_isnan(double value) {
 	return (value != value);
 }
 
-// ENTER THE VALUE TO CONVERT > 15.000001
-// char: Non displayable
-// int: 15
-// float: 15f
-// double: 15
+void inf_m() {
+	cout << "char: impossible" << endl;
+	cout << "int: impossible" << endl;
+	cout << "float: -inf" << endl;
+	cout << "double: -inf" << endl;
+}
 
 void ScalarConverter::convert(string val) {
 
 	char *tmp;
 	double nbr = strtod(val.c_str(), &tmp);
 	
-	// cout << "-------------nbr is '" << nbr << "' tmp is '"<< tmp << "'-------------" << endl;
-	// cout << std::fixed << std::setprecision(1);
+	cout << "-------------nbr is '" << nbr << "' tmp is '"<< tmp << "'-------------" << endl;
+
 	if (!my_isnan(nbr) && (tmp[0] == 'f' && tmp[1] == 0))
 		to_float(nbr);
 	else if (tmp && tmp[1] == 0 && nbr == 0)

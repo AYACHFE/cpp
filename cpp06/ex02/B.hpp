@@ -1,36 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   B.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 14:09:55 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/21 12:38:10 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/21 12:15:58 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/21 12:25:42 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
+#include "Base.hpp"
 
-using std::cout;
-using std::endl;
-using std::string;
-
-class A;
-
-class Base {
-	public:
-	//ORTHODOX
-		Base();
-		Base(Base &src);
-		Base& operator=(Base &src);
-		virtual ~Base();
+class B :public Base {
 };
-
-Base *generate(void);
-void identify(Base* p);
-void identify(Base& p);
-
-

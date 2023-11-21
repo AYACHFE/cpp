@@ -6,17 +6,19 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:22:12 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/20 13:10:07 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:38:19 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
 Base *generate(void) {
 	
 	srand(time(NULL));
 	int r = rand() % 3;
-	cout << r << endl;
 	if (r == 0)
 		return (new A());
 	if (r == 1)
