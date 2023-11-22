@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:56 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/22 15:39:34 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:51:36 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <array>
 #include <vector>
 #include <map>
+#include <fstream>
+#include <string>
 
 using std::cout;
 using std::endl;
@@ -31,4 +33,6 @@ class BitcoinExchange {
 	//
 
 	
+	static void fill_database();
+	static void fill_input_data(char *file);
 };
