@@ -6,23 +6,24 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:29:25 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/20 11:59:25 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:00:53 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
 
-template<typename type, int size>
-void	easyfind(type *arg_1, int to_find) {
+template<typename type>
+void	easyfind(type arg_1, int to_find) {
 
-
-	for(int i = 0; i < size; i++) {
-		if (arg_1[i] == to_find) {
-			cout << "the VALUE \"" << to_find << "\" " << "was found at INDEX \"" << i << "\"" << endl;
-			return ;
+	typename type::iterator it = arg_1.begin();
+	typename type::iterator ite = arg_1.end();
+	for(;it != ite;) {
+		if (*it == to_find) {
+			cout << "the VALUE \"" << to_find << "\" " << "was found at INDEX " << endl;
+				return ;
 		}
+		it++;
 	}
 	std::cerr << "The value was not found" << endl;
 	return ;
 }
- 

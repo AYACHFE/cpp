@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 12:25:19 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/21 12:58:18 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:21:45 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		Span::shortestSpan() {
 			// cout << "tab["<< i << "] :" <<  tab[i] << endl;
 			// cout << "tab["<< j << "] :" <<  tab[j] << endl;
 			// cout << "-----------------------------\n";
-			
+
 			if (tab[i] > tab[j]) {
 				if (tab[i] - tab[j] < shortest) 
 					shortest = tab[i] - tab[j];
@@ -75,7 +75,7 @@ int		Span::longestSpan() {
 			// cout << "tab["<< i << "] :" <<  tab[i] << endl;
 			// cout << "tab["<< j << "] :" <<  tab[j] << endl;
 			// cout << "-----------------------------\n";
-			
+
 			if (tab[i] > tab[j]) {
 				if (tab[i] - tab[j] > longest)
 					longest = tab[i] - tab[j];

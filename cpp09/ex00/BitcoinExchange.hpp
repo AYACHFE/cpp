@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 13:26:36 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/22 15:09:54 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/22 15:30:56 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/22 15:39:34 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,21 @@
 
 #include <iostream>
 #include <array>
+#include <vector>
+#include <map>
 
 using std::cout;
 using std::endl;
 using std::string;
 
-template<typename type>
-void	easyfind(type arg_1, int to_find);
+class BitcoinExchange {
+	public:
+	//orthodox
+		BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange &copy);
+		~BitcoinExchange();
+		BitcoinExchange &operator=(const BitcoinExchange & btc);
+	//
 
-#include "easyfind.tpp"
+	
+};
