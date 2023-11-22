@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:56 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/22 19:51:36 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:22:27 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ class BitcoinExchange {
 		BitcoinExchange &operator=(const BitcoinExchange & btc);
 	//
 
-	
-	static void fill_database();
-	static void fill_input_data(char *file);
+
+	std::map<string, float> fill_database();
+	std::map<string, float> fill_input_data(char *file);
+	void check_bases(std::map<string, float> data);
 };
