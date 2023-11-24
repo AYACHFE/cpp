@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/23 13:02:49 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:05:10 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ void BitcoinExchange::check_dates(std::map<string, float> data) {
 		// cout << "f " << fir << " s " << sec << endl;
 		string month = it->first.substr(fir , sec - fir);
 		string day = it->first.substr(sec + 1, it->first.length());
-		cout << "'" << day << "'" ;
-		cout << "'" << month << "'" << endl;
+		// cout << "'" << day << "'" ;
+		// cout << "'" << month << "'" << endl;
 		if (atoi((month.c_str())) < 0 || atoi((month.c_str())) > 12) {
 			
 			cout << "error in the month in this DATe " << it->first << endl;
@@ -123,29 +123,39 @@ void BitcoinExchange::check_dates(std::map<string, float> data) {
 
 void	BitcoinExchange::calculater(std::map<string, float> db, std::map<string, float> input) {
 	
-	std::map<string, float>::iterator it = db.begin();
+	// std::map<string, float>::iterator it = db.begin();
 	std::map<string, float>::iterator ite = input.begin();
 	string to_search_for = ite->first.substr(0, ite->first.find("*"));
 	// std::function<bool(const std::pair<const std::string, float>&, const std::string&)>
 	//  comp = [](const std::pair<const std::string, float>& pair, const std::string& str) {
     // return pair.first < str;
 	// }
-	std::map<string, float>::iterator lb = std::lower_bound(it, db.end(), to_search_for);
+	std::map<string, float>::iterator lb = db.lower_bound(to_search_for);
 	
-	if (lb != db.end()) {
-		cout << "founded\n";
+	if (lb != db.end() && lb->first == to_search_for) {
+		cout << to_search_for << " founded ;)" << endl;
 	}
-	exit (0);
+	else {
+		cout << to_search_for << " not found and the closest is " << lb->first << endl;
+	}
+	// std::map<std::string, float>::iterator lb = data.lower_bound(to_search_for);
+
+    // if (lb != data.end() && lb->first == to_search_for) {
+    //     std::cout << "Found: " << lb->first << ", Value: " << lb->second << std::endl;
+    // } else {
+    //     std::cout << "Not found" << std::endl;
+    // }
+	// exit (0);
 	
 
-	for (;it != db.end(); it++) {
+	// for (;it != db.end(); it++) {
 		
-			// cout << "to_search_for : |" <<  to_search_for << "| it : |" << it->first << "|" << endl;
-		if (it->first == to_search_for) {
-			cout << to_search_for << endl;
-			break ;
-		}
-	}
+	// 		// cout << "to_search_for : |" <<  to_search_for << "| it : |" << it->first << "|" << endl;
+	// 	if (it->first == to_search_for) {
+	// 		cout << to_search_for << endl;
+	// 		break ;
+	// 	}
+	// }
 }
 
 
