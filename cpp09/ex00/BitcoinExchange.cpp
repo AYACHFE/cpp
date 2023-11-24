@@ -70,12 +70,6 @@ std::map<string, float>	BitcoinExchange::fill_input_data(char *file) {
 			else
 				data_to_sear[line.substr(0,line.find("|") - 1) + "* "] = std::atof((line.substr(line.find("|") + 2)).c_str());
 
-		// // it = data_to_sear.find(line.substr(0, line.find("|") - 1) + "* ");
-		// 	cout << "===============\n";
-        // 	check_pos(it);
-        // if (it != data_to_sear.end()) {
-		// 	it++;
-        // }
 		}
 		catch(...) {
 			cout << "error in the btc price" << endl;
