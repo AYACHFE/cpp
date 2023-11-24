@@ -34,12 +34,12 @@ std::map<string, float>	BitcoinExchange::fill_database() {
 			cout << "error in the btc price" << endl;
 		}
 	}
-	std::map<string, float>::iterator it = data.begin();
-	for(;it != data.end(); it++) {
-
-		cout << "key : \"" << it->first  << "\"" << "        |        value : \"" << it->second  << "\"" << endl;
-	}
 	input_file.close();
+	// std::map<string, float>::iterator it = data.begin();
+	// for(;it != data.end(); it++) {
+
+	// 	cout << "key : \"" << it->first  << "\"" << "        |        value : \"" << it->second  << "\"" << endl;
+	// }
 	return (data);
 }
 
@@ -64,22 +64,22 @@ std::map<string, float>	BitcoinExchange::fill_input_data(char *file) {
 			if (data_to_sear.count(line.substr(0,line.find("|") - 1) + "* ") > 0)  {
 				if (i == 126)
 					i = 40;
-				data_to_sear[line.substr(0,line.find("|") - 1) + "*" + static_cast<char>(i++)] = std::stof((line.substr(line.find("|") + 2)).c_str());
+				data_to_sear[line.substr(0,line.find("|") - 1) + "*" + static_cast<char>(i++)] = std::atof((line.substr(line.find("|") + 2)).c_str());
 			}
 			else
-				data_to_sear[line.substr(0,line.find("|") - 1) + "* "] = std::stof((line.substr(line.find("|") + 2)).c_str());
+				data_to_sear[line.substr(0,line.find("|") - 1) + "* "] = std::atof((line.substr(line.find("|") + 2)).c_str());
 		}
 		catch(...) {
 			cout << "error in the btc price" << endl;
 		}
 	}
-	std::map<string, float>::iterator ite = data_to_sear.begin();
-	for(;ite != data_to_sear.end(); ite++) {
-
-		cout << "key_to_search : \"" << ite->first  << "\"" << "        |        value_to_search : \"" 
-		<< ite->second  << "\"" << endl;
-	}
 	input_file_2.close();
+	// std::map<string, float>::iterator ite = data_to_sear.begin();
+	// for(;ite != data_to_sear.end(); ite++) {
+
+	// 	cout << "key_to_search : \"" << ite->first  << "\"" << "        |        value_to_search : \"" 
+	// 	<< ite->second  << "\"" << endl;
+	// }
 	return (data_to_sear);
 }
 
@@ -123,28 +123,23 @@ void BitcoinExchange::check_dates(std::map<string, float> data) {
 
 void	BitcoinExchange::calculater(std::map<string, float> db, std::map<string, float> input) {
 	
-	// std::map<string, float>::iterator it = db.begin();
 	std::map<string, float>::iterator ite = input.begin();
-	string to_search_for = ite->first.substr(0, ite->first.find("*"));
-	std::map<string, float>::iterator lb = db.lower_bound(to_search_for);
 	
-	if (lb != db.end() && lb->first == to_search_for) {
-		cout << to_search_for << " founded ;)" << endl;
-	}
-	else {
-		// if the date is before 2009 there is a problem and i should print the actual one , not the 
-		// previous one
-		cout << to_search_for << " not found and the closest is " << std::prev(lb)->first << endl;
-	}
+	for (;ite != input.end() ; ite++) {
 
-	// for (;it != db.end(); it++) {
-		
-	// 		// cout << "to_search_for : |" <<  to_search_for << "| it : |" << it->first << "|" << endl;
-	// 	if (it->first == to_search_for) {
-	// 		cout << to_search_for << endl;
-	// 		break ;
-	// 	}
-	// }
+		string to_search_for = ite->first.substr(0, ite->first.find("*"));
+		std::map<string, float>::iterator lb = db.lower_bound(to_search_for);
+		if (lb != db.end() && lb->first == to_search_for) {
+			// cout << to_search_for << " founded ;)" << endl;
+			cout << to_search_for << " => " << ite->second << " = " << ite->second * lb->second << endl;
+		}
+		else {
+			// if the date is before 2009 there is a problem and i should print the actual one , not the 
+			// previous one
+			cout << to_search_for << " not found and the closest is " 
+			<< std::prev(lb)->first << " => " << ite->second << " = " << ite->second * std::prev(lb)->second << endl;
+		}
+	}
 }
 
 
