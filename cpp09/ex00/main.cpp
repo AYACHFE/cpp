@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:10 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/22 20:35:32 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:57:43 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ int main(int ac, char **av) {
 
 	b1 = db.fill_database();
 	b2 = db.fill_input_data(av[1]);
-	// db.check_bases(b2);
+	// db.check_bases(b1);
+	db.check_bases(b2);
+	// db.check_dates(b1);
+	db.check_dates(b2);
+	db.calculater(b1, b2);
 
 
 
-	
-	// BitcoinExchange::fill_database();
-	// BitcoinExchange::fill_input_data(av[1]);
-	
+
+
 	return 0;
 }

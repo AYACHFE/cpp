@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/22 20:34:42 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:02:49 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ std::map<string, float>	BitcoinExchange::fill_input_data(char *file) {
 	}
 	// string line;
 	std::map<string, float> data_to_sear;
+	int i = 40;
 	for (;std::getline(input_file_2, line);) {
 		try {
 			if (skip_first) {
@@ -60,7 +61,13 @@ std::map<string, float>	BitcoinExchange::fill_input_data(char *file) {
 				continue;
 			}
 			// cout << line.substr(0,line.find("|") - 1) << "|||" << line.substr(line.find("|") + 2) << endl;
-			data_to_sear[line.substr(0,line.find("|") - 1)] = std::stof((line.substr(line.find("|") + 2)).c_str());
+			if (data_to_sear.count(line.substr(0,line.find("|") - 1) + "* ") > 0)  {
+				if (i == 126)
+					i = 40;
+				data_to_sear[line.substr(0,line.find("|") - 1) + "*" + static_cast<char>(i++)] = std::stof((line.substr(line.find("|") + 2)).c_str());
+			}
+			else
+				data_to_sear[line.substr(0,line.find("|") - 1) + "* "] = std::stof((line.substr(line.find("|") + 2)).c_str());
 		}
 		catch(...) {
 			cout << "error in the btc price" << endl;
@@ -78,12 +85,65 @@ std::map<string, float>	BitcoinExchange::fill_input_data(char *file) {
 
 void BitcoinExchange::check_bases(std::map<string, float> data) {
 
-	std::map<string, float>::iterator it;
+	std::map<string, float>::iterator it = data.begin();
 	for(;it != data.end() ;it++) {
+		// cout << it->second << endl;
 		if (it->second < 0 || it->second > 1000) {
 			
-			cout << "ERROR in the Bitcoin range PRICE" << it->second << endl;
+			cout << "ERROR in the Bitcoin range PRICE \"" << it->second << "\"" << endl;
 			exit (1);
+		}
+	}
+}
+
+void BitcoinExchange::check_dates(std::map<string, float> data) {
+	
+	std::map<string, float>::iterator it = data.begin();
+	int day_of_month[] = {0, 31 ,28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	for(;it != data.end();it++) {
+		int	fir = it->first.find("-") + 1;
+		int	sec = it->first.find("-", fir + 1);
+		// cout << "f " << fir << " s " << sec << endl;
+		string month = it->first.substr(fir , sec - fir);
+		string day = it->first.substr(sec + 1, it->first.length());
+		cout << "'" << day << "'" ;
+		cout << "'" << month << "'" << endl;
+		if (atoi((month.c_str())) < 0 || atoi((month.c_str())) > 12) {
+			
+			cout << "error in the month in this DATe " << it->first << endl;
+			exit (0);
+		}
+		if (day_of_month[atoi(month.c_str())] < atoi(day.c_str()) || atoi(day.c_str()) < 0) {
+			
+			cout << "error in the day in this DATe " << it->first << endl;
+			exit (0);
+		}
+	}
+}
+
+void	BitcoinExchange::calculater(std::map<string, float> db, std::map<string, float> input) {
+	
+	std::map<string, float>::iterator it = db.begin();
+	std::map<string, float>::iterator ite = input.begin();
+	string to_search_for = ite->first.substr(0, ite->first.find("*"));
+	// std::function<bool(const std::pair<const std::string, float>&, const std::string&)>
+	//  comp = [](const std::pair<const std::string, float>& pair, const std::string& str) {
+    // return pair.first < str;
+	// }
+	std::map<string, float>::iterator lb = std::lower_bound(it, db.end(), to_search_for);
+	
+	if (lb != db.end()) {
+		cout << "founded\n";
+	}
+	exit (0);
+	
+
+	for (;it != db.end(); it++) {
+		
+			// cout << "to_search_for : |" <<  to_search_for << "| it : |" << it->first << "|" << endl;
+		if (it->first == to_search_for) {
+			cout << to_search_for << endl;
+			break ;
 		}
 	}
 }
