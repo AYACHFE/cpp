@@ -39,4 +39,7 @@ class BitcoinExchange {
 	void	check_bases(std::map<string, float> data);
 	void	check_dates(std::map<string, float> data);
 	void	calculater(std::map<string, float> db, std::map<string, float> input);
+
+	void check_pos(std::map<string, float>::iterator it);
+	void check_pos_date(std::map<string, float>::iterator it);
 };

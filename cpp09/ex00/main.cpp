@@ -24,10 +24,10 @@ int main(int ac, char **av) {
 
 	b1 = db.fill_database();
 	b2 = db.fill_input_data(av[1]);
-	// db.check_bases(b1);
-	db.check_bases(b2);
-	// db.check_dates(b1);
-	db.check_dates(b2);
+
+	// db.check_bases(b2);
+
+	// db.check_dates(b2);
 	db.calculater(b1, b2);
 
 

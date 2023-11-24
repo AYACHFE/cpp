@@ -51,9 +51,10 @@ std::map<string, float>	BitcoinExchange::fill_input_data(char *file) {
 		std::cout << "check the INPUT FILE " << std::endl;
 		exit(0);
 	}
-	// string line;
+
 	std::map<string, float> data_to_sear;
 	int i = 40;
+	// std::map<string, float>::iterator it = data_to_sear.begin();
 	for (;std::getline(input_file_2, line);) {
 		try {
 			if (skip_first) {
@@ -68,6 +69,13 @@ std::map<string, float>	BitcoinExchange::fill_input_data(char *file) {
 			}
 			else
 				data_to_sear[line.substr(0,line.find("|") - 1) + "* "] = std::atof((line.substr(line.find("|") + 2)).c_str());
+
+		// // it = data_to_sear.find(line.substr(0, line.find("|") - 1) + "* ");
+		// 	cout << "===============\n";
+        // 	check_pos(it);
+        // if (it != data_to_sear.end()) {
+		// 	it++;
+        // }
 		}
 		catch(...) {
 			cout << "error in the btc price" << endl;
@@ -121,23 +129,81 @@ void BitcoinExchange::check_dates(std::map<string, float> data) {
 	}
 }
 
+void BitcoinExchange::check_pos(std::map<string, float>::iterator it) {
+
+	if (it->second < 0)
+		throw("Error: not a positive number.") ;
+
+	if (it->second > 1000) {
+		// cout << "ERROR in the Bitcoin range PRICE \"" << it->second << "\"" << endl;
+		throw("Error: too large a number.") ;
+	}
+}
+
+void BitcoinExchange::check_pos_date(std::map<string, float>::iterator it) {
+	
+	// std::map<string, float>::iterator it = data.begin();
+	int day_of_month[] = {0, 31 ,28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	// for(;it != data.end();it++) {
+		int	fir = it->first.find("-") + 1;
+		int	sec = it->first.find("-", fir + 1);
+		// cout << "f " << fir << " s " << sec << endl;
+		string month = it->first.substr(fir , sec - fir);
+		string day = it->first.substr(sec + 1, it->first.length());
+		// cout << "'" << day << "'" ;
+		// cout << "'" << month << "'" << endl;
+		if (atoi((month.c_str())) < 0 || atoi((month.c_str())) > 12) {
+			
+			// throw (it->first.c_str());
+			// throw (it->first.substr(0, it->first.length() - 2).c_str());
+			cout << "Error: bad input => " << it->first.substr(0, it->first.length() - 2) << endl;;
+			throw (1);
+
+			// cout << "error in the month in this DATe " << it->first << endl;
+			// exit (0);
+		}
+		if (day_of_month[atoi(month.c_str())] < atoi(day.c_str()) || atoi(day.c_str()) < 0) {
+			
+			// cout << "Error: bad input => ";
+			// throw (it->first.c_str());
+			cout << "Error: bad input => " << it->first.substr(0, it->first.length() - 2) << endl;;
+			throw (1);
+			// cout << "error in the day in this DATe " << it->first << endl;
+			// exit (0);
+		}
+	// }
+}
+
+
 void	BitcoinExchange::calculater(std::map<string, float> db, std::map<string, float> input) {
 	
 	std::map<string, float>::iterator ite = input.begin();
 	
 	for (;ite != input.end() ; ite++) {
 
-		string to_search_for = ite->first.substr(0, ite->first.find("*"));
-		std::map<string, float>::iterator lb = db.lower_bound(to_search_for);
-		if (lb != db.end() && lb->first == to_search_for) {
-			// cout << to_search_for << " founded ;)" << endl;
-			cout << to_search_for << " => " << ite->second << " = " << ite->second * lb->second << endl;
+		try {
+
+			check_pos(ite);
+			check_pos_date(ite);
+
+			string to_search_for = ite->first.substr(0, ite->first.find("*"));
+			std::map<string, float>::iterator lb = db.lower_bound(to_search_for);
+			if (lb != db.end() && lb->first == to_search_for) {
+				// cout << to_search_for << " founded ;)" << endl;
+				cout << to_search_for << " => " << ite->second << " = " << ite->second * lb->second << endl;
+			}
+			else {
+				// if the date is before 2009 there is a problem and i should print the actual one , not the 
+				// previous one
+				// cout << to_search_for << " not found and the closest is " 
+				cout << std::prev(lb)->first << " => " << ite->second << " = " << ite->second * std::prev(lb)->second << endl;
+			}
 		}
-		else {
-			// if the date is before 2009 there is a problem and i should print the actual one , not the 
-			// previous one
-			cout << to_search_for << " not found and the closest is " 
-			<< std::prev(lb)->first << " => " << ite->second << " = " << ite->second * std::prev(lb)->second << endl;
+		catch (const char*  error) {
+			cout << error << endl;
+		}
+		catch (...) {
+			continue ;
 		}
 	}
 }
