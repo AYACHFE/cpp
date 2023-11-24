@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/24 10:05:10 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:36:32 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,27 +126,16 @@ void	BitcoinExchange::calculater(std::map<string, float> db, std::map<string, fl
 	// std::map<string, float>::iterator it = db.begin();
 	std::map<string, float>::iterator ite = input.begin();
 	string to_search_for = ite->first.substr(0, ite->first.find("*"));
-	// std::function<bool(const std::pair<const std::string, float>&, const std::string&)>
-	//  comp = [](const std::pair<const std::string, float>& pair, const std::string& str) {
-    // return pair.first < str;
-	// }
 	std::map<string, float>::iterator lb = db.lower_bound(to_search_for);
 	
 	if (lb != db.end() && lb->first == to_search_for) {
 		cout << to_search_for << " founded ;)" << endl;
 	}
 	else {
-		cout << to_search_for << " not found and the closest is " << lb->first << endl;
+		// if the date is before 2009 there is a problem and i should print the actual one , not the 
+		// previous one
+		cout << to_search_for << " not found and the closest is " << std::prev(lb)->first << endl;
 	}
-	// std::map<std::string, float>::iterator lb = data.lower_bound(to_search_for);
-
-    // if (lb != data.end() && lb->first == to_search_for) {
-    //     std::cout << "Found: " << lb->first << ", Value: " << lb->second << std::endl;
-    // } else {
-    //     std::cout << "Not found" << std::endl;
-    // }
-	// exit (0);
-	
 
 	// for (;it != db.end(); it++) {
 		

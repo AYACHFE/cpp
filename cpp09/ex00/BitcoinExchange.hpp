@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:56 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/23 11:56:41 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:32:00 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <map>
 #include <fstream>
 #include <string>
+#include <iterator>
 
 using std::cout;
 using std::endl;
