@@ -136,36 +136,23 @@ void BitcoinExchange::check_pos(std::map<string, float>::iterator it) {
 
 void BitcoinExchange::check_pos_date(std::map<string, float>::iterator it) {
 	
-	// std::map<string, float>::iterator it = data.begin();
 	int day_of_month[] = {0, 31 ,28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	// for(;it != data.end();it++) {
 		int	fir = it->first.find("-") + 1;
 		int	sec = it->first.find("-", fir + 1);
-		// cout << "f " << fir << " s " << sec << endl;
 		string month = it->first.substr(fir , sec - fir);
 		string day = it->first.substr(sec + 1, it->first.length());
 		// cout << "'" << day << "'" ;
 		// cout << "'" << month << "'" << endl;
 		if (atoi((month.c_str())) < 0 || atoi((month.c_str())) > 12) {
-			
-			// throw (it->first.c_str());
-			// throw (it->first.substr(0, it->first.length() - 2).c_str());
+
 			cout << "Error: bad input => " << it->first.substr(0, it->first.length() - 2) << endl;;
 			throw (1);
-
-			// cout << "error in the month in this DATe " << it->first << endl;
-			// exit (0);
 		}
 		if (day_of_month[atoi(month.c_str())] < atoi(day.c_str()) || atoi(day.c_str()) < 0) {
 			
-			// cout << "Error: bad input => ";
-			// throw (it->first.c_str());
 			cout << "Error: bad input => " << it->first.substr(0, it->first.length() - 2) << endl;;
 			throw (1);
-			// cout << "error in the day in this DATe " << it->first << endl;
-			// exit (0);
 		}
-	// }
 }
 
 
@@ -176,7 +163,6 @@ void	BitcoinExchange::calculater(std::map<string, float> db, std::map<string, fl
 	for (;ite != input.end() ; ite++) {
 
 		try {
-
 			check_pos(ite);
 			check_pos_date(ite);
 
