@@ -43,7 +43,7 @@ std::map<string, float>	BitcoinExchange::fill_database() {
 	return (data);
 }
 
-std::map<string, float>	BitcoinExchange::fill_input_data(char *file) {
+void	BitcoinExchange::compare_input_to_db(std::map<string, float> db, char *file) {
 	string line;
 	bool skip_first = true;
 	std::ifstream input_file_2(file);
@@ -52,132 +52,30 @@ std::map<string, float>	BitcoinExchange::fill_input_data(char *file) {
 		exit(0);
 	}
 
-	std::map<string, float> data_to_sear;
-	int i = 40;
-	// std::map<string, float>::iterator it = data_to_sear.begin();
 	for (;std::getline(input_file_2, line);) {
 		try {
 			if (skip_first) {
 				skip_first = false;
 				continue;
 			}
-			// cout << line.substr(0,line.find("|") - 1) << "|||" << line.substr(line.find("|") + 2) << endl;
-			if (data_to_sear.count(line.substr(0,line.find("|") - 1) + "* ") > 0)  {
-				if (i == 126)
-					i = 40;
-				data_to_sear[line.substr(0,line.find("|") - 1) + "*" + static_cast<char>(i++)] = std::atof((line.substr(line.find("|") + 2)).c_str());
-			}
-			else
-				data_to_sear[line.substr(0,line.find("|") - 1) + "* "] = std::atof((line.substr(line.find("|") + 2)).c_str());
-
-		}
-		catch(...) {
-			cout << "error in the btc price" << endl;
-		}
-	}
-	input_file_2.close();
-	// std::map<string, float>::iterator ite = data_to_sear.begin();
-	// for(;ite != data_to_sear.end(); ite++) {
-
-	// 	cout << "key_to_search : \"" << ite->first  << "\"" << "        |        value_to_search : \"" 
-	// 	<< ite->second  << "\"" << endl;
-	// }
-	return (data_to_sear);
-}
-
-void BitcoinExchange::check_bases(std::map<string, float> data) {
-
-	std::map<string, float>::iterator it = data.begin();
-	for(;it != data.end() ;it++) {
-		// cout << it->second << endl;
-		if (it->second < 0 || it->second > 1000) {
-			
-			cout << "ERROR in the Bitcoin range PRICE \"" << it->second << "\"" << endl;
-			exit (1);
-		}
-	}
-}
-
-void BitcoinExchange::check_dates(std::map<string, float> data) {
-	
-	std::map<string, float>::iterator it = data.begin();
-	int day_of_month[] = {0, 31 ,28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	for(;it != data.end();it++) {
-		int	fir = it->first.find("-") + 1;
-		int	sec = it->first.find("-", fir + 1);
-		// cout << "f " << fir << " s " << sec << endl;
-		string month = it->first.substr(fir , sec - fir);
-		string day = it->first.substr(sec + 1, it->first.length());
-		// cout << "'" << day << "'" ;
-		// cout << "'" << month << "'" << endl;
-		if (atoi((month.c_str())) < 0 || atoi((month.c_str())) > 12) {
-			
-			cout << "error in the month in this DATe " << it->first << endl;
-			exit (0);
-		}
-		if (day_of_month[atoi(month.c_str())] < atoi(day.c_str()) || atoi(day.c_str()) < 0) {
-			
-			cout << "error in the day in this DATe " << it->first << endl;
-			exit (0);
-		}
-	}
-}
-
-void BitcoinExchange::check_pos(std::map<string, float>::iterator it) {
-
-	if (it->second < 0)
-		throw("Error: not a positive number.") ;
-
-	if (it->second > 1000) {
-		// cout << "ERROR in the Bitcoin range PRICE \"" << it->second << "\"" << endl;
-		throw("Error: too large a number.") ;
-	}
-}
-
-void BitcoinExchange::check_pos_date(std::map<string, float>::iterator it) {
-	
-	int day_of_month[] = {0, 31 ,28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-		int	fir = it->first.find("-") + 1;
-		int	sec = it->first.find("-", fir + 1);
-		string month = it->first.substr(fir , sec - fir);
-		string day = it->first.substr(sec + 1, it->first.length());
-		// cout << "'" << day << "'" ;
-		// cout << "'" << month << "'" << endl;
-		if (atoi((month.c_str())) < 0 || atoi((month.c_str())) > 12) {
-
-			cout << "Error: bad input => " << it->first.substr(0, it->first.length() - 2) << endl;;
-			throw (1);
-		}
-		if (day_of_month[atoi(month.c_str())] < atoi(day.c_str()) || atoi(day.c_str()) < 0) {
-			
-			cout << "Error: bad input => " << it->first.substr(0, it->first.length() - 2) << endl;;
-			throw (1);
-		}
-}
-
-
-void	BitcoinExchange::calculater(std::map<string, float> db, std::map<string, float> input) {
-	
-	std::map<string, float>::iterator ite = input.begin();
-	
-	for (;ite != input.end() ; ite++) {
-
-		try {
-			check_pos(ite);
-			check_pos_date(ite);
-
-			string to_search_for = ite->first.substr(0, ite->first.find("*"));
+			string to_search_for = line.substr(0, line.find("|") - 1);
+			string second = line.substr(line.find("|") + 1, line.length());
 			std::map<string, float>::iterator lb = db.lower_bound(to_search_for);
+
+				check_pos_date(to_search_for);
+				check_pos(second);
+
+
 			if (lb != db.end() && lb->first == to_search_for) {
-				// cout << to_search_for << " founded ;)" << endl;
-				cout << to_search_for << " => " << ite->second << " = " << ite->second * lb->second << endl;
+				cout << to_search_for << " => " << second << " = " << std::atof(second.c_str()) * lb->second << endl;
 			}
 			else {
 				// if the date is before 2009 there is a problem and i should print the actual one , not the 
 				// previous one
 				// cout << to_search_for << " not found and the closest is " 
-				cout << std::prev(lb)->first << " => " << ite->second << " = " << ite->second * std::prev(lb)->second << endl;
+				cout << to_search_for << " => " << second << " = " << std::atof(second.c_str()) * std::prev(lb)->second << endl;
 			}
+
 		}
 		catch (const char*  error) {
 			cout << error << endl;
@@ -186,8 +84,44 @@ void	BitcoinExchange::calculater(std::map<string, float> db, std::map<string, fl
 			continue ;
 		}
 	}
+	input_file_2.close();
 }
 
+void BitcoinExchange::check_pos(string second) {
+
+	if (std::atof(second.c_str()) < 0)
+		throw("Error: not a positive number.") ;
+
+	if (std::atof(second.c_str()) > 1000) {
+		throw("Error: too large a number.") ;
+	}
+}
+
+void BitcoinExchange::check_pos_date(string to_search_for) {
+	
+		int day_of_month[] = {0, 31 ,28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		int	fir = to_search_for.find("-") + 1;
+		int	sec = to_search_for.find("-", fir + 1);
+		string month = to_search_for.substr(fir , sec - fir);
+		string day = to_search_for.substr(sec + 1, to_search_for.length());
+		// cout << "'" << day << "'" ;
+		// cout << " '" << month << "'" << endl;
+		if (atoi((month.c_str())) < 0 || atoi((month.c_str())) > 12) {
+
+			cout << "Error: bad input => " << to_search_for << endl;;
+			throw (1);
+		}
+		if (day_of_month[atoi(month.c_str())] < atoi(day.c_str()) || atoi(day.c_str()) < 0) {
+			
+			cout << "Error: bad input => " << to_search_for << endl;
+			throw (1);
+		}
+		if (to_search_for < "2009-01-02")
+		{
+			cout << "Error: bad input => " << to_search_for << endl;
+			throw (1);
+		}
+}
 
 BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::BitcoinExchange(const BitcoinExchange & __unused copy) {}

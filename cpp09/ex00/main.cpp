@@ -20,19 +20,9 @@ int main(int ac, char **av) {
 	}
 	BitcoinExchange db;
 	std::map<string, float> b1;
-	std::map<string, float> b2;
 
 	b1 = db.fill_database();
-	b2 = db.fill_input_data(av[1]);
-
-	// db.check_bases(b2);
-
-	// db.check_dates(b2);
-	db.calculater(b1, b2);
-
-
-
-
+	db.compare_input_to_db(b1, av[1]);
 
 	return 0;
 }
