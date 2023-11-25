@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 15:30:10 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/25 11:22:39 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/25 11:23:47 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/25 12:22:19 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#pragma once
 
-int main(int ac, char **av) {
+#include <iostream>
+#include <string>
+#include <stack>
 
-	if (ac != 2) {
-		cout << "INPUT error !!" << endl;
-		return 1;
-	}
-	BitcoinExchange db;
-	std::map<string, float> b1;
+using   std::cout;
+using   std::endl;
+using   std::string;
 
-	b1 = db.fill_database();
-	db.compare_input_to_db(b1, av[1]);
+class RPN {
+	
+};
 
-	return 0;
-}
- 
+void	import_data(string input);

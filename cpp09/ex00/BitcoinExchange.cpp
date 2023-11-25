@@ -6,12 +6,12 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/24 10:36:32 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:22:55 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
+ 
 std::map<string, float>	BitcoinExchange::fill_database() {
 
 	bool skip_first_ = true;
@@ -124,6 +124,6 @@ void BitcoinExchange::check_pos_date(string to_search_for) {
 }
 
 BitcoinExchange::BitcoinExchange() {}
-BitcoinExchange::BitcoinExchange(const BitcoinExchange & __unused copy) {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange & __unused copy) { *this = copy; }
 BitcoinExchange::~BitcoinExchange() {}
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange & __unused btc) { return *this ;}
