@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 11:51:32 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/17 10:50:27 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:33:44 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Array<type>::Array(Array<type> &copy) {
 
 	n = copy.n;
 	tab = new type[n];
-	for (size_t i = 0; i < 5 ; i++)
+	for (size_t i = 0; i < n ; i++)
 		tab[i] = copy.tab[i];
 }
 
@@ -60,7 +60,7 @@ type &Array<type>::operator[](size_t index) {
 }
 
 template<typename type>
-Array<type>::Array() : n(10) {
+Array<type>::Array() : n(1) {
 	
 	tab = new type[n];
 	// cout << "Constructor called su" << endl;

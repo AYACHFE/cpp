@@ -6,7 +6,7 @@
 #    By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/09 10:11:11 by aachfenn          #+#    #+#              #
-#    Updated: 2023/11/25 17:28:03 by aachfenn         ###   ########.fr        #
+#    Updated: 2023/11/25 17:27:14 by aachfenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ OBJS    = ${SRC:.cpp=.o}
 
 RM      = rm -f
 
-NAME    = exxx
+NAME    = PmergeMe
 
-${NAME} :	${OBJS} $(wildcard *.hpp) $(wildcard *.tpp)
+${NAME} :	${OBJS} $(wildcard *.hpp)
 		c++ ${CXXFLAGS} ${OBJS} -o ${NAME}
 
 all     : ${NAME}

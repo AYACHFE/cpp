@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Array.hpp                                          :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 11:32:29 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/25 17:29:11 by aachfenn         ###   ########.fr       */
+/*   Created: 2023/11/25 16:08:43 by aachfenn          #+#    #+#             */
+/*   Updated: 2023/11/25 16:09:08 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <array>
+#include <vector>
+#include <fstream>
+#include <string>
+#include <iterator>
 
 using std::cout;
 using std::endl;
 using std::string;
-
-template<typename type>
-class Array {
-		type *tab;
-		size_t n;
-	public:
-	//ORTHODOX
-		Array();
-		Array(Array<type> &copy);
-		Array<type> &operator=(Array<type> &copy);
-		~Array();
-	//
-		Array(size_t n);
-		type &operator[](size_t index);
-		void settab(size_t index,type data);
-		void fill(type data);
-		type &getpos(size_t index);
-		size_t size() const;
-};
-
-#include "Array.tpp"
