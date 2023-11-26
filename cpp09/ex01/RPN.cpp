@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 11:22:16 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/25 14:49:28 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/26 10:11:23 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ void import_data(string input) {
     while (iss >> token) {
 		bool check = true;
 		
-		if (token.length() > 1 && token[0] != '+') {
+		if (token.length() > 1 && (token[0] != '+')) {
 			cout << "Error" << endl;
 			return ;
 		}
-		
+		if (token[0] == '+' && token.length() > 2) {
+			cout << "Error" << endl;
+			return ;	
+		}
 		if (token == "*" || token == "/" || token == "+" || token == "-") {
 			if (ms.size() < 2) {	
 				cout << "Error" << endl;
