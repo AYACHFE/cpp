@@ -6,34 +6,34 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 11:22:16 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/26 10:11:23 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:16:29 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 #include <sstream>
 
+static int i = 0;
+void	error() {
+	cout << "Error" << i << endl;
+	exit (1);
+}
+
 void import_data(string input) {
 
-	std::stack<int> ms;
+	std::stack<float> ms;
 	std::istringstream iss(input);
     std::string token;
     while (iss >> token) {
 		bool check = true;
 		
-		if (token.length() > 1 && (token[0] != '+')) {
-			cout << "Error" << endl;
-			return ;
-		}
-		if (token[0] == '+' && token.length() > 2) {
-			cout << "Error" << endl;
-			return ;	
-		}
+		if (token.length() > 1 && (token[0] != '+'))
+			error();
+		// if (token[0] == '+' && token.length() > 2)
+		// 	error();
 		if (token == "*" || token == "/" || token == "+" || token == "-") {
-			if (ms.size() < 2) {	
-				cout << "Error" << endl;
-				return ;
-			}
+			if (ms.size() < 2)
+				error();
 			int second = ms.top();
 			ms.pop();
 			int first = ms.top();
@@ -48,8 +48,12 @@ void import_data(string input) {
 				ms.push(first - second);
 			check = false;
 		}
+		else if (!isdigit(token[0]))
+			error();
 		if (check) 
 			ms.push(std::atoi(token.c_str()));
 	}
+	if (ms.size() != 1)
+		error();
 	cout << ms.top() << endl;
 }
