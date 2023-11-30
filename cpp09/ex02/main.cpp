@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:08:20 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/28 10:00:57 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/30 10:14:55 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int ac, char **av) {
 	
-	if (ac < 1) {
+	if (ac <= 1) {
 		cout << "Input Error." << endl;
 		exit (0);
 	}

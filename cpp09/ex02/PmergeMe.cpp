@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/28 17:00:04 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:16:03 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,16 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 		}
 	}
 
-	cout << "size is : " <<  main.size() << endl;
+	// cout << "size is : " <<  main.size() << endl;
 	
 	vector<pair>::iterator it = main.begin();
 
-	for( ;it != main.end(); it++ ) {
+	// for( ;it != main.end(); it++ ) {
 		
-		cout << it->first.back() << " | " << it->second.back() << endl;
-	}
+	// 	cout << it->first.back() << " | " << it->second.back() << endl;
+	// }
 	it = main.begin();
-	cout << "-----------\n";
+	// cout << "-----------\n";
 	for( ;it != main.end(); it++ ) {
 		
 		if (it->first.back() > it->second.back()){
@@ -85,18 +85,18 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 
 	}
 	
-	for (it = main.begin(); it!= main.end();it++)
-	{
-		vector<int>::iterator itt = it->first.begin();
-		for (;itt != it->first.end(); itt++)
-			cout << *itt << " - ";
-		// cout << endl;
-		itt = it->second.begin();
-		for (;itt != it->second.end(); itt++)
-			cout << " |--> " <<  *itt << " + " ;
-		cout << endl;
-	}
-	cout << "-----------\n";
+	// for (it = main.begin(); it!= main.end();it++)
+	// {
+	// 	vector<int>::iterator itt = it->first.begin();
+	// 	for (;itt != it->first.end(); itt++)
+	// 		cout << *itt << " - ";
+	// 	// cout << endl;
+	// 	itt = it->second.begin();
+	// 	for (;itt != it->second.end(); itt++)
+	// 		cout << " |--> " <<  *itt << " + " ;
+	// 	cout << endl;
+	// }
+	// cout << "-----------\n";
 	it = main.begin();
 
 	simple.clear();
@@ -123,6 +123,14 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 	
 }
 
+// void insert_pan_in_main(vector<pair> &gen) {
+	
+// 	vector<pair>::iterator it = gen.begin();
+// 	for(;it != gen.end();it++) {
+		
+// 	}
+// }
+
 void	insert(vector<int>  &simple, int pairs_nb, int pairs_size) {
 
 	vector<int>::iterator it;
@@ -135,27 +143,30 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size) {
 		my_pair.first.clear();
 		my_pair.second.clear();
 		for (int i = 0; i < (pairs_size / 2); i++) {
-			cout << " ---> " << *it ;
 			my_pair.first.push_back(*it++);
 		}
 		for (int i = 0; i < (pairs_size / 2); i++) {
-			cout << " --------> " << *it;
 			my_pair.second.push_back(*it++);
 		}
 		main.push_back(my_pair);
 	}
-	cout << "\nsize = " << main.size() << endl;
-	// vector<pair>::iterator ite = main.begin();
-	// vector<int>::iterator itt = ite->first.begin();
-	// for (int i = 0; i < pairs_nb /2 ; i++) {
-		// for (; itt != ite->first.end(); itt++)
-		// 	cout << " --> " << *itt;
-		// for (itt = ite->second.begin(); itt != ite->second.end(); itt++)
-		// 	cout << " -------> " << *itt;
-	// }
+	// cout << "--> size = " << main.size() << endl;
+	vector<pair>::iterator ite = main.begin();
+	vector<int>::iterator itt = ite->first.begin();
+	for (;ite != main.end() ; ite++) {
+		itt = ite->first.begin();
+		cout << " pan: ";
+		for (; itt != ite->first.end(); itt++)
+			cout  << *itt << " , ";
+		itt = ite->second.begin();
+		cout << endl << " main: ";
+		for (; itt != ite->second.end(); itt++)
+			cout << *itt << " , ";
+		cout << endl;
+	}
 	
-	// cout << ite->first.back() << " | " << ite->second.back() << endl;
-	cout << "\n\033[31m-----------------------------------------------------\033[0m\n";
+	// insert_pan_in_main(main);
+
 }
 
 // void error_check(char **av) {
