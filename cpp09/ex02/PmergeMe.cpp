@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/01 15:17:39 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:52:45 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,17 +147,29 @@ void insert_pan_in_main(vector<pair> &gen, vector<int>  __unused &simple, vector
 	it = gen.begin();
 	vector<vector<int> >::iterator pos;
 	vector<vector<int> >::iterator pan_pos = pan.begin();
-	
-	for (;pan_pos != pan.end(); pan_pos++) {
-
-		pos = std::lower_bound(mai.begin(), mai.end(), *pan_pos, compare);
-		mai.insert(pos, *pan_pos);
+	int i = 2;
+	for (;i < 33;i++) {
+		int js_s = (std::pow(2 ,i) - std::pow(-1,i)) / 3;
+		int js_e = (std::pow(2 ,i - 1) - std::pow(-1,i - 1)) / 3 + 1;
+		cout << "js_start : " << js_s << " js_end : " << js_e << endl;
 	}
-	if (!rest.empty()) {
-		vector<int>::iterator re = rest.begin();
-		for (; re != rest.end(); re++)
-			cout << "-----> rest == " << *re << endl;
-	}
+		for (;pan_pos != pan.end(); pan_pos++) {
+		
+			pos = std::lower_bound(mai.begin(), mai.end(), *pan_pos, compare);
+			mai.insert(pos, *pan_pos);
+		}
+		if (!rest.empty()) {
+			vector<int>::iterator re = rest.begin();
+			for (; re != rest.end(); re++)
+				cout << "-----> rest == " << *re << endl;
+		}
+		// if (pan_pos == pan.end()) {
+		// 	cout << "______done______\n";
+		// 	cout << "js_start : " << js_s << " js_end : " << js_e << endl;
+		// 	return_to_my_vector(simple, mai);
+		// 	return ;
+		// }
+	// }
 
 	return_to_my_vector(simple, mai);
 }
