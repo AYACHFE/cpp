@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/01 10:42:23 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:17:39 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ void merge_insert(char **av) {
 		simple.push_back(atoi(av[i++]));
 	}
 
-	vector<int> rest;
 	int pairs_nb = i / 2;
 	int pairs_size = 2;
 
-	recur(simple, pairs_nb, pairs_size, rest);
+	recur(simple, pairs_nb, pairs_size);
 }
 
-void	recur(vector<int> &simple, int pairs_nb, int pairs_size, vector<int> rest) {
+void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 	
 	cout << "pair nb ; " << pairs_nb << " | pairs size ; " << pairs_size << endl;
 	
+	vector<int> rest;
 	pair my_pair;
 	vector<pair> main;
 	int i = 0;
@@ -72,7 +72,6 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size, vector<int> rest) 
 		if (it->first.back() > it->second.back())
 			swap(it->first, it->second);
 	}
-	
 	// for (it = main.begin(); it!= main.end();it++)
 	// {
 	// 	vector<int>::iterator itt = it->first.begin();
@@ -86,7 +85,6 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size, vector<int> rest) 
 	// }
 	// cout << "-----------\n";
 	it = main.begin();
-
 	simple.clear();
 	for( ;it != main.end(); it++) {
 
@@ -104,15 +102,30 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size, vector<int> rest) 
 	if (pairs_nb == 1)
 		check = false;
 	if (check)
-		recur(simple, pairs_nb / 2, pairs_size * 2, rest);
-	
+		recur(simple, pairs_nb / 2, pairs_size * 2);
 	insert(simple, pairs_nb, pairs_size, rest);
-	
-	
 }
 
-bool compare(const vector<int>& vec, int value) {
-	return (vec.back() < value);
+static int counter = 0;
+
+bool compare(vector<int> vec, vector<int> vec_1) {
+	counter++;
+    return (vec.back() < vec_1.back());
+}
+
+void	return_to_my_vector(vector<int> &simple, vector<vector<int> > mai) {
+
+	simple.clear();
+	vector<vector<int> >::iterator it = mai.begin();
+	for (;it != mai.end(); it++) {
+		vector<int>::iterator m = it->begin();
+		for (;m != it->end();m++)
+			simple.push_back(*m);
+	}
+	vector<int>::iterator s = simple.begin();
+	for(;s != simple.end(); s++)
+		cout << "simple is ; " << *s << endl;
+	cout << "Compar N: " <<  counter << endl;
 }
 
 void insert_pan_in_main(vector<pair> &gen, vector<int>  __unused &simple, vector<int> rest) {
@@ -120,62 +133,33 @@ void insert_pan_in_main(vector<pair> &gen, vector<int>  __unused &simple, vector
 	vector<pair>::iterator it = gen.begin();
 	vector<vector<int> > mai;
 	pan_pair pan_iter;
-	vector<pan_pair> pan;
-
-	pan.resize(20);
-	// pan_iter.first.resize(20);
+	vector<vector<int> > pan;
 	for(;it != gen.end();it++) {
 		mai.push_back(it->second);
 	}
-	// int i = 0;
 	for(it = gen.begin();it != gen.end();it++) {
-		pan_iter.first.clear();
-		// pan_iter.second.clear();
-
-		pan_iter.first.insert(pan_iter.first.begin(), it->first.begin(), it->first.end());
-		// cout << "--->" << it->first.at(i) << endl;
-			// cout << pan_iter.first.at(i);
-		pan.push_back(pan_iter);
+		pan.push_back(it->first);
+	}
+	if (!rest.empty()) {
+		pan.push_back(rest);
+		cout << "rest: " << rest.front() << " " << pan.back().back() << endl;
 	}
 	it = gen.begin();
 	vector<vector<int> >::iterator pos;
+	vector<vector<int> >::iterator pan_pos = pan.begin();
+	
+	for (;pan_pos != pan.end(); pan_pos++) {
 
-	for (; it != gen.end() ; it++) {
-
-		pos = std::lower_bound(mai.begin(), mai.end(), it->first.back(), compare);
-		mai.insert(pos, it->first);	
+		pos = std::lower_bound(mai.begin(), mai.end(), *pan_pos, compare);
+		mai.insert(pos, *pan_pos);
 	}
 	if (!rest.empty()) {
-		
-			
-		cout << "rest == " << rest.back() << endl;
-	}
-	
-	vector<vector<int> >::iterator m = mai.begin();
-		cout << "Chain : ";
-	for (; m != mai.end(); m++) {
-		vector<int>::iterator inner = m->begin();
-		for (; inner != m->end(); inner++)
-			cout << *inner << " , ";
-		cout << endl;
+		vector<int>::iterator re = rest.begin();
+		for (; re != rest.end(); re++)
+			cout << "-----> rest == " << *re << endl;
 	}
 
-	// vector<vector<int> >::iterator m = mai.begin();
-	// (void)m;
-	// for(;m != mai.end();m++) {
-	// 	vector<int>::iterator inner = m->begin();
-	// 	cout << "main Chain : " ;
-	// 	for (;inner != m->end();inner++)
-	// 		cout << *inner << " , ";
-	// 	vector<int>::iterator itt = it->first.begin();
-	// 	for (;it != gen.end() ; it++) {
-	// 		itt = it->first.begin();
-	// 		cout << " Pan Chain : ";
-	// 		for (; itt != it->first.end(); itt++)
-	// 			cout  << *itt << " , ";
-	// 	}
-	// 	cout << endl;
-	// }
+	return_to_my_vector(simple, mai);
 }
 
 void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest) {
@@ -197,7 +181,19 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest
 		}
 		main.push_back(my_pair);
 	}
-	// if ()
+	// vector<int>::iterator res = rest.begin();
+	// if (!rest.empty()) {
+	// 	my_pair.first.clear();
+	// 	my_pair.second.clear();
+		
+	// 	for (;res != rest.end();) {
+	// 		cout << "+++ " << *res << endl;
+	// 		my_pair.first.push_back(*res++);
+	// 	}
+	// 	main.push_back(my_pair);
+	// }
+
+	
 	// cout << "--> size = " << main.size() << endl;
 	// vector<pair>::iterator ite = main.begin();
 	// vector<int>::iterator itt = ite->first.begin();
