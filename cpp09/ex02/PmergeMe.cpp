@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/01 15:52:45 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/02 13:27:21 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,31 +147,48 @@ void insert_pan_in_main(vector<pair> &gen, vector<int>  __unused &simple, vector
 	it = gen.begin();
 	vector<vector<int> >::iterator pos;
 	vector<vector<int> >::iterator pan_pos = pan.begin();
-	int i = 2;
-	for (;i < 33;i++) {
-		int js_s = (std::pow(2 ,i) - std::pow(-1,i)) / 3;
-		int js_e = (std::pow(2 ,i - 1) - std::pow(-1,i - 1)) / 3 + 1;
-		cout << "js_start : " << js_s << " js_end : " << js_e << endl;
-	}
-		for (;pan_pos != pan.end(); pan_pos++) {
-		
-			pos = std::lower_bound(mai.begin(), mai.end(), *pan_pos, compare);
-			mai.insert(pos, *pan_pos);
+	int my_size = 0;
+	int i = 3;
+	mai.insert(mai.begin(), pan.front());
+	my_size++;
+	pan_pos++;
+	if (pan.size() == 1)
+		return ;
+	for (;;i++) {
+		int js_start = (std::pow(2 ,i) - std::pow(-1,i)) / 3;
+		int js_end = (std::pow(2 ,i - 1) - std::pow(-1,i - 1)) / 3 + 1;
+		cout << "js_start : " << js_start << " js_end : " << js_end << endl;
+		if (static_cast<size_t>(js_start) > pan.size())
+			js_start = pan.size() + 1;
+		for (int j = js_start; j > js_end;j--) {
+			cout << "incre\n";
+			// if (pan_pos != pan.end())
+				pan_pos++;
 		}
+		for (; js_start >= js_end; js_start--) {
+			cout << "j is : " << js_start << endl;
+			my_size++;
+			// cout << "-------" << endl;
+			pos = std::lower_bound(mai.begin(), mai.end(), *pan_pos, compare);
+			mai.insert(pos, *pan_pos--);
+			if ((size_t)my_size >= pan.size()) {
+				cout << "______done______\n";
+				return_to_my_vector(simple, mai);
+				return ;
+			}
+		}
+	}
+		// for (;pan_pos != pan.end(); pan_pos++) {
+		// 	pos = std::lower_bound(mai.begin(), mai.end(), *pan_pos, compare);
+		// 	mai.insert(pos, *pan_pos);
+		
+		// }
 		if (!rest.empty()) {
 			vector<int>::iterator re = rest.begin();
 			for (; re != rest.end(); re++)
 				cout << "-----> rest == " << *re << endl;
 		}
-		// if (pan_pos == pan.end()) {
-		// 	cout << "______done______\n";
-		// 	cout << "js_start : " << js_s << " js_end : " << js_e << endl;
-		// 	return_to_my_vector(simple, mai);
-		// 	return ;
-		// }
-	// }
-
-	return_to_my_vector(simple, mai);
+		return_to_my_vector(simple, mai);
 }
 
 void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest) {
@@ -229,4 +246,37 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest
 	
 // 	int i = 0;
 // 	if (string(av[i]))
+// }
+
+
+// void insert_pan_in_main(vector<pair> &gen, vector<int>  __unused &simple, vector<int> rest) {
+	
+// 	vector<pair>::iterator it = gen.begin();
+// 	vector<vector<int> > mai;
+// 	pan_pair pan_iter;
+// 	vector<vector<int> > pan;
+// 	for(;it != gen.end();it++) {
+// 		mai.push_back(it->second);
+// 	}
+// 	for(it = gen.begin();it != gen.end();it++) {
+// 		pan.push_back(it->first);
+// 	}
+// 	if (!rest.empty()) {
+// 		pan.push_back(rest);
+// 		cout << "rest: " << rest.front() << " " << pan.back().back() << endl;
+// 	}
+// 	it = gen.begin();
+// 	vector<vector<int> >::iterator pos;
+// 	vector<vector<int> >::iterator pan_pos = pan.begin();
+// 		for (;pan_pos != pan.end(); pan_pos++) {
+// 			pos = std::lower_bound(mai.begin(), mai.end(), *pan_pos, compare);
+// 			mai.insert(pos, *pan_pos);
+		
+// 		}
+// 		if (!rest.empty()) {
+// 			vector<int>::iterator re = rest.begin();
+// 			for (; re != rest.end(); re++)
+// 				cout << "-----> rest == " << *re << endl;
+// 		}
+// 		return_to_my_vector(simple, mai);
 // }
