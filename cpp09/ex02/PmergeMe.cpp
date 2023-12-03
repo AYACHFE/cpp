@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/02 13:27:21 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/02 19:21:12 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,21 @@ void	return_to_my_vector(vector<int> &simple, vector<vector<int> > mai) {
 			simple.push_back(*m);
 	}
 	vector<int>::iterator s = simple.begin();
+	cout << "simple is --> ";
 	for(;s != simple.end(); s++)
-		cout << "simple is ; " << *s << endl;
+		cout << *s << " | ";
 	cout << "Compar N: " <<  counter << endl;
+}
+
+void print_v_to_v(vector<vector<int> > m) {
+	vector<vector<int> >::iterator it = m.begin();
+
+	for (;it != m.end() ;it++) {
+		vector<int>::iterator inner = it->begin();
+		for (;inner != it->end();inner++) {
+			cout << "Inner : " << *inner << endl;
+		}
+	}
 }
 
 void insert_pan_in_main(vector<pair> &gen, vector<int>  __unused &simple, vector<int> rest) {
@@ -152,25 +164,34 @@ void insert_pan_in_main(vector<pair> &gen, vector<int>  __unused &simple, vector
 	mai.insert(mai.begin(), pan.front());
 	my_size++;
 	pan_pos++;
-	if (pan.size() == 1)
+	if (pan.size() == 1) {
+		return_to_my_vector(simple, mai);
 		return ;
+	}
+	// print_v_to_v(pan);
 	for (;;i++) {
+		
 		int js_start = (std::pow(2 ,i) - std::pow(-1,i)) / 3;
 		int js_end = (std::pow(2 ,i - 1) - std::pow(-1,i - 1)) / 3 + 1;
 		cout << "js_start : " << js_start << " js_end : " << js_end << endl;
-		if (static_cast<size_t>(js_start) > pan.size())
+		
+		if (static_cast<size_t>(js_start) >= pan.size())
 			js_start = pan.size() + 1;
-		for (int j = js_start; j > js_end;j--) {
-			cout << "incre\n";
-			// if (pan_pos != pan.end())
-				pan_pos++;
-		}
+		
+		// for (int j = js_start; j > js_end ; j--) {
+		// 	if (pan_pos != pan.end())
+		// 		pan_pos++;
+		// }
+		
 		for (; js_start >= js_end; js_start--) {
 			cout << "j is : " << js_start << endl;
 			my_size++;
 			// cout << "-------" << endl;
-			pos = std::lower_bound(mai.begin(), mai.end(), *pan_pos, compare);
-			mai.insert(pos, *pan_pos--);
+			if (pan_pos != pan.end()) {
+				// cout << " pan_pos : " << pan_pos->front() << endl;
+				pos = std::lower_bound(mai.begin(), mai.end(), *pan_pos, compare);
+				mai.insert(pos, *pan_pos++);
+			}
 			if ((size_t)my_size >= pan.size()) {
 				cout << "______done______\n";
 				return_to_my_vector(simple, mai);
@@ -210,34 +231,6 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest
 		}
 		main.push_back(my_pair);
 	}
-	// vector<int>::iterator res = rest.begin();
-	// if (!rest.empty()) {
-	// 	my_pair.first.clear();
-	// 	my_pair.second.clear();
-		
-	// 	for (;res != rest.end();) {
-	// 		cout << "+++ " << *res << endl;
-	// 		my_pair.first.push_back(*res++);
-	// 	}
-	// 	main.push_back(my_pair);
-	// }
-
-	
-	// cout << "--> size = " << main.size() << endl;
-	// vector<pair>::iterator ite = main.begin();
-	// vector<int>::iterator itt = ite->first.begin();
-	// for (;ite != main.end() ; ite++) {
-	// 	itt = ite->first.begin();
-	// 	cout << " pan: ";
-	// 	for (; itt != ite->first.end(); itt++)
-	// 		cout  << *itt << " , ";
-	// 	itt = ite->second.begin();
-	// 	cout << endl << " main: ";
-	// 	for (; itt != ite->second.end(); itt++)
-	// 		cout << *itt << " , ";
-	// 	cout << endl;
-	// }
-	
 	insert_pan_in_main(main, simple, rest);
 
 }
