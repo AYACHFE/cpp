@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 12:25:19 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/04 10:48:06 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:37:22 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int		Span::shortestSpan() {
 		
 		std::vector<int>::iterator itt = tab.begin();
 		for (;itt != it; itt++) {
-
 			if (shortest > *it - *itt)
 				shortest = *it - *itt;
 		}
@@ -66,11 +65,16 @@ int		Span::longestSpan() {
 	longest = *(tab.end() - 1) - *(tab.begin());
 	return longest;
 }
+
 void	Span::addrange(std::vector<int> my_v) {
 	
 	std::vector<int>::iterator it = my_v.begin();
-	for (; it != my_v.end() ; it++) {
-		cout << *it << endl;
-		addNumber(*it);
+	std::vector<int>::iterator itt = my_v.end();
+	for (;it != itt;it++) {
+		if (std::distance(my_v.begin(), it) > N) {
+			cout << "the range is bigger than N" << endl;
+			return ;
+		}
+		tab.push_back(*it);
 	}
 }

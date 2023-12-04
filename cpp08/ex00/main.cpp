@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:24:52 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/22 15:17:11 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:06:17 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int main()
 	list.push_back(70);
 	
 
-	easyfind<std::list<int> >(list, 40);
+	easyfind<std::list<int> >(list, 1);
+
 	easyfind<std::vector<int> >(tab_1, 1);
+	
 	easyfind<std::array<int, 10> >(tab, 10);
 }

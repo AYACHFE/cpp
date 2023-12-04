@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:09:17 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/04 10:19:12 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:16:39 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,4 @@ typename std::stack<type>::container_type::iterator MutantStack<type>::end() {
 
 	return (this->c.end());
 }
+
