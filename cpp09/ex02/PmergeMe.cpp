@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/04 19:21:36 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:53:12 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void merge_insert(char **av) {
 
 	recur(simple, pairs_nb, pairs_size);
 }
-
+static int counter = 0;
 void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 	
 	cout << "pair nb ; " << pairs_nb << " | pairs size ; " << pairs_size << endl;
@@ -71,19 +71,8 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 		
 		if (it->first.back() > it->second.back())
 			swap(it->first, it->second);
+		counter++;
 	}
-	// for (it = main.begin(); it!= main.end();it++)
-	// {
-	// 	vector<int>::iterator itt = it->first.begin();
-	// 	for (;itt != it->first.end(); itt++)
-	// 		cout << *itt << " - ";
-	// 	// cout << endl;
-	// 	itt = it->second.begin();
-	// 	for (;itt != it->second.end(); itt++)
-	// 		cout << " |--> " <<  *itt << " + " ;
-	// 	cout << endl;
-	// }
-	// cout << "-----------\n";
 	it = main.begin();
 	simple.clear();
 	for( ;it != main.end(); it++) {
@@ -106,7 +95,7 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 	insert(simple, pairs_nb, pairs_size, rest);
 }
 
-static int counter = 0;
+
 
 bool compare(vector<int> vec, vector<int> vec_1) {
 	counter++;
@@ -182,6 +171,7 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 	 21846, 43690, 87382, 174762, 349526, 699050, 1398102, 2796202, 5592406, 
 	 11184810,22369622, 44739242, 89478486, 178956970, 357913942, 715827882, 
 	 1431655766, 2863311530, 5726623062, 11453246122, 22906492246, 45812984490};
+	int size = 1;
 	while (!pan.empty())
 	{
 		js_start = pan.begin();
@@ -196,25 +186,22 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 			}
 			i++;
 			js_start++;
-			// cout << "size : " << pan.size() <<endl;
 		}
 		for(;;) {
+			cout << "i  : " << i << endl;
+			cout << "my_pos is : " << (jb[index]) << endl; 
+			cout << "size is : " << size << endl; 
 			pos = std::lower_bound(mai.begin(), mai.end(), *js_start, compare);
 			mai.insert(pos, *js_start);
 			pan.erase(js_start);
+			size++;
 			if (js_start == js_end) {
-				// cout << "}}\n";
 				break ;
 			}
 			js_start--;
 		}
 		index++;
 	}
-	// if (!rest.empty()) {
-	// 	vector<int>::iterator re = rest.begin();
-	// 	for (; re != rest.end(); re++)
-	// 		cout << "-----> rest == " << *re << endl;
-	// }
 	return_to_my_vector(simple, mai);
 }
 
