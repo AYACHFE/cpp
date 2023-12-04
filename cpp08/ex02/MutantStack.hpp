@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 09:57:04 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/23 11:34:08 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/04 10:18:49 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,18 @@ using std::string;
 
 template<typename type>
 class MutantStack : public std::stack<type> {
-		// std::deque<type> st;
+
 	public:
 	//ORTHODOX
 		MutantStack();
+		MutantStack(const MutantStack &copy);
 		~MutantStack();
-
+		MutantStack &operator=(const MutantStack &op);
 	//
 	
 	typedef typename std::stack<type>::container_type::iterator iterator;
-	
-	// void push(type to_push);
-	// void pop();
 	iterator begin();
 	iterator end();
-	// size_t size();
-	// size_t top();
 };
 
 #include "MutantStack.tpp"

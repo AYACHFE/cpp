@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:29:25 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/22 16:00:53 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/04 09:14:51 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	easyfind(type arg_1, int to_find) {
 		}
 		it++;
 	}
-	std::cerr << "The value was not found" << endl;
+	cout << "The value was not found" << endl;
 	return ;
 }
