@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/04 20:53:12 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:56:50 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,8 +188,8 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 			js_start++;
 		}
 		for(;;) {
-			cout << "i  : " << i << endl;
-			cout << "my_pos is : " << (jb[index]) << endl; 
+			int my_pos = std::distance(pan.begin(), js_start);
+			cout << "my_pos  : " << my_pos << endl;
 			cout << "size is : " << size << endl; 
 			pos = std::lower_bound(mai.begin(), mai.end(), *js_start, compare);
 			mai.insert(pos, *js_start);
