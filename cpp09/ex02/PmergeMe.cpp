@@ -6,15 +6,13 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/05 13:01:28 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:52:46 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
 typedef std::pair<std::vector<int>, std::vector<int> > pair;
-typedef std::pair<std::vector<int>, std::vector<std::vector<int> >::iterator > pan_pair;
-
 
 template<typename type>
 void swap(type &arg_1, type &arg_2) {
@@ -131,11 +129,9 @@ void print_v_to_v(vector<vector<int> > m) {
 	}
 }
 
-void	prep_pan_n_main(vector<pair> &gen, vector<vector<int> > &mai, vector<vector<int> > &pan, vector<int> &simple, vector<int> rest) {
+void	prep_pan_n_main(vector<pair> &gen, vector<vector<int> > &mai, vector<vector<int> > &pan, vector<int> __unused &simple, vector<int> rest) {
 
 	vector<pair>::iterator it = gen.begin();
-	pan.reserve(simple.size());
-	mai.reserve(simple.size());
 	mai.push_back(it->first);
 	mai.push_back(it->second);
 	it++;
@@ -145,15 +141,10 @@ void	prep_pan_n_main(vector<pair> &gen, vector<vector<int> > &mai, vector<vector
 	for(it = gen.begin() + 1;it != gen.end();it++) {
 		pan.push_back(it->first);
 	}
-	// std::cout << "here pan:   ";
-	// 		print_v_to_v(pan);
 	if (!rest.empty()) {
 		pan.push_back(rest);
-		// cout << "rest: " << rest.front() << " " << pan.back().back() << endl;
 	}
-
 }
-
 
 void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest, int pair_nb) {
 
@@ -167,7 +158,6 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 	}
 	
 	vector<vector<int> >::iterator js_start;
-	vector<vector<int> >::iterator mai_end;
 	vector<vector<int> >::iterator js_end;
 	int index = 0;
 	long jb[] = {2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922,
@@ -180,10 +170,7 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 	{
 		js_start = pan.begin();
 		js_end = pan.begin();
-		mai_end = mai.begin();
-
 		int i = 0;
-		
 		while (i < jb[index] - 1)
 		{
 			if (js_start >= pan.end()) {
@@ -193,21 +180,22 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 			i++;
 			js_start++;
 		}
+		if (js_start == pan.end())
+			js_start--;
 		sum += jb[index];
 		int s = sum + size;
+			cout  << "---->js " << js_start->back() << endl;
 		for(;;) {
-			// cout << "s  : " << s << endl;
-			if ((size_t)s > mai.size()) 
+			cout << "s is : " << s << endl;
+			cout << "mai.size() is : " << mai.size() << endl;
+			cout << "pan.size() is : " << pan.size() << endl;
+			if ((size_t)s > mai.size()) {
+				
 				s = mai.size();
-			// for (int j = 0; j < s ; j++)
-			// {
-			// 	if (mai_end == mai.end()) {
-			// 		mai_end--;
-			// 		break;
-			// 	}
-			// 	mai_end++;
-			// }
-			pos = std::lower_bound(mai.begin(), mai.begin() + s, *js_start, compare);
+				cout << "s after is : " << s << endl;
+			}
+			pos = std::lower_bound(mai.begin(), (mai.begin() + s), *js_start, compare);
+			cout  << "---->\n";
 			mai.insert(pos, *js_start);
 			pan.erase(js_start);
 			size++;

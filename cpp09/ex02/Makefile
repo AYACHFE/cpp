@@ -6,13 +6,13 @@
 #    By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/09 10:11:11 by aachfenn          #+#    #+#              #
-#    Updated: 2023/11/28 08:28:35 by aachfenn         ###   ########.fr        #
+#    Updated: 2023/12/05 18:16:18 by aachfenn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC     = $(wildcard *.cpp)
 
-CXXFLAGS   = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS   = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g
 
 OBJS    = ${SRC:.cpp=.o}
 

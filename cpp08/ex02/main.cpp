@@ -6,12 +6,12 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 09:56:38 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/04 10:23:19 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:04:51 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
-
+#include <list>
 int main()
 {
 	MutantStack<int> mstack;
@@ -72,4 +72,3 @@ int main()
 // 	std::stack<int> s(mstack);
 // 	return 0;
 // }
-

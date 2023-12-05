@@ -6,15 +6,15 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 12:25:19 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/04 17:37:22 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:07:54 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span(int nu) : N(nu) , counter(0) {}
+Span::Span(int nu) : N(nu) , counter(1) {}
 
-Span::Span() : N(0) , counter(0) {}
+Span::Span() : N(0) , counter(1) {}
 
 Span::Span(const Span &copy) {
 
@@ -35,30 +35,33 @@ Span &Span::operator=(const Span &op) {
 
 void	Span::addNumber(int to_add) {
 
-	if (static_cast<size_t>(counter) < N) {
+	if (static_cast<size_t>(counter) <= N) {
 		tab.push_back(to_add);
 		counter++;
 	}
+	else
+		throw std::string("The number added are more than N");
 }
 
 int		Span::shortestSpan() {
 
-	int shortest = tab[0];
+	if (tab.size() <= 1)
+		throw string("The size is less or equal to 1");
+	std::sort(tab.begin(), tab.end());
 	std::vector<int>::iterator it = tab.begin();
-	std::sort(it, tab.end());
-	for (;it != tab.end();it++) {
-		
-		std::vector<int>::iterator itt = tab.begin();
-		for (;itt != it; itt++) {
-			if (shortest > *it - *itt)
-				shortest = *it - *itt;
-		}
+	int shortest = tab.back();
+	for (;it + 1 != tab.end();it++) {
+
+		if (shortest > (*(it + 1)) - *it)
+			shortest = (*(it + 1)) - *it;
 	}
 	return shortest;
 }
 
 int		Span::longestSpan() {
 
+	if (tab.size() <= 1)
+		throw string("The size is less or equal to 1");
 	int longest;
 	std::vector<int>::iterator it = tab.begin();
 	std::sort(it, tab.end());
@@ -66,15 +69,12 @@ int		Span::longestSpan() {
 	return longest;
 }
 
-void	Span::addrange(std::vector<int> my_v) {
-	
-	std::vector<int>::iterator it = my_v.begin();
-	std::vector<int>::iterator itt = my_v.end();
-	for (;it != itt;it++) {
-		if (std::distance(my_v.begin(), it) > N) {
-			cout << "the range is bigger than N" << endl;
-			return ;
-		}
-		tab.push_back(*it);
+void	Span::addrange(std::vector<int>::iterator from, std::vector<int>::iterator to) {
+
+	if (static_cast<size_t>(std::distance(from, to)) > N - tab.size()) {
+		throw (string("the range is bigger than N"));
+	}
+	for (;from != to;from++) {
+		tab.push_back(*from);
 	}
 }

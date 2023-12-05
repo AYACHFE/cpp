@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 12:25:20 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/04 10:26:56 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:34:32 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 #include <vector>
 #include <array>
+#include <exception>
 
 using std::cout;
 using std::endl;
@@ -33,7 +34,7 @@ class Span {
 	//
 		Span(int nu);
 		void	addNumber(int to_add);
-		void	addrange(std::vector<int> my_v);
+		void	addrange(std::vector<int>::iterator from, std::vector<int>::iterator to);
 		int		shortestSpan();
 		int		longestSpan();
 };
