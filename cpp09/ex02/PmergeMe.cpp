@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/04 20:56:50 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:01:28 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 
 bool compare(vector<int> vec, vector<int> vec_1) {
 	counter++;
+	// cout << "  ---> " << vec.back() << " | " << vec_1.back() << endl;
     return (vec.back() < vec_1.back());
 }
 
@@ -148,7 +149,7 @@ void	prep_pan_n_main(vector<pair> &gen, vector<vector<int> > &mai, vector<vector
 	// 		print_v_to_v(pan);
 	if (!rest.empty()) {
 		pan.push_back(rest);
-		cout << "rest: " << rest.front() << " " << pan.back().back() << endl;
+		// cout << "rest: " << rest.front() << " " << pan.back().back() << endl;
 	}
 
 }
@@ -164,7 +165,9 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 		return_to_my_vector(simple, mai);
 		return ;
 	}
-	vector<vector<int> >::iterator js_start; 
+	
+	vector<vector<int> >::iterator js_start;
+	vector<vector<int> >::iterator mai_end;
 	vector<vector<int> >::iterator js_end;
 	int index = 0;
 	long jb[] = {2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922,
@@ -172,10 +175,13 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 	 11184810,22369622, 44739242, 89478486, 178956970, 357913942, 715827882, 
 	 1431655766, 2863311530, 5726623062, 11453246122, 22906492246, 45812984490};
 	int size = 1;
+	int sum = 0;
 	while (!pan.empty())
 	{
 		js_start = pan.begin();
 		js_end = pan.begin();
+		mai_end = mai.begin();
+
 		int i = 0;
 		
 		while (i < jb[index] - 1)
@@ -187,11 +193,21 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 			i++;
 			js_start++;
 		}
+		sum += jb[index];
+		int s = sum + size;
 		for(;;) {
-			int my_pos = std::distance(pan.begin(), js_start);
-			cout << "my_pos  : " << my_pos << endl;
-			cout << "size is : " << size << endl; 
-			pos = std::lower_bound(mai.begin(), mai.end(), *js_start, compare);
+			// cout << "s  : " << s << endl;
+			if ((size_t)s > mai.size()) 
+				s = mai.size();
+			// for (int j = 0; j < s ; j++)
+			// {
+			// 	if (mai_end == mai.end()) {
+			// 		mai_end--;
+			// 		break;
+			// 	}
+			// 	mai_end++;
+			// }
+			pos = std::lower_bound(mai.begin(), mai.begin() + s, *js_start, compare);
 			mai.insert(pos, *js_start);
 			pan.erase(js_start);
 			size++;
@@ -225,7 +241,6 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest
 		main.push_back(my_pair);
 	}
 	insert_pan_in_main(main, simple, rest, pairs_nb);
-
 }
 
 
