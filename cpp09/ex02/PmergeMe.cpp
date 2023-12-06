@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/05 19:52:46 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/06 10:47:48 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,19 @@ void swap(type &arg_1, type &arg_2) {
 	arg_1 = tmp;
 }
 
-void merge_insert(char **av) {
+void merge_insert(vector<int> input) {
 
-
-	vector<int> simple;
+	vector<int> simple = input;
 	
-	int i = 0;
-	while (av[i]) {
-		simple.push_back(atoi(av[i++]));
-	}
-
+	int i = simple.size();
 	int pairs_nb = i / 2;
 	int pairs_size = 2;
 
 	recur(simple, pairs_nb, pairs_size);
 }
+
 static int counter = 0;
+
 void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 	
 	cout << "pair nb ; " << pairs_nb << " | pairs size ; " << pairs_size << endl;
@@ -97,7 +94,6 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 
 bool compare(vector<int> vec, vector<int> vec_1) {
 	counter++;
-	// cout << "  ---> " << vec.back() << " | " << vec_1.back() << endl;
     return (vec.back() < vec_1.back());
 }
 
@@ -114,7 +110,7 @@ void	return_to_my_vector(vector<int> &simple, vector<vector<int> > mai) {
 	cout << "simple is --> ";
 	for(;s != simple.end(); s++)
 		cout << *s << " | ";
-	cout << "Compar N: " <<  counter << endl;
+	cout << endl << "Compar N: " <<  counter << endl;
 }
 
 void print_v_to_v(vector<vector<int> > m) {
@@ -129,7 +125,7 @@ void print_v_to_v(vector<vector<int> > m) {
 	}
 }
 
-void	prep_pan_n_main(vector<pair> &gen, vector<vector<int> > &mai, vector<vector<int> > &pan, vector<int> __unused &simple, vector<int> rest) {
+void	prep_pan_n_main(vector<pair> &gen, vector<vector<int> > &mai, vector<vector<int> > &pan, vector<int> rest) {
 
 	vector<pair>::iterator it = gen.begin();
 	mai.push_back(it->first);
@@ -150,13 +146,12 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 
 	vector<vector<int> > mai;
 	vector<vector<int> > pan;
-	prep_pan_n_main(gen, mai, pan, simple, rest);
+	prep_pan_n_main(gen, mai, pan, rest);
 	vector<vector<int> >::iterator pos;
 	if (pair_nb == 1) {
 		return_to_my_vector(simple, mai);
 		return ;
 	}
-	
 	vector<vector<int> >::iterator js_start;
 	vector<vector<int> >::iterator js_end;
 	int index = 0;
@@ -174,28 +169,23 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 		while (i < jb[index] - 1)
 		{
 			if (js_start >= pan.end()) {
-					js_start--;
-					break ;
+				js_start--;
+				break ;
 			}
-			i++;
 			js_start++;
+			i++;
 		}
 		if (js_start == pan.end())
 			js_start--;
 		sum += jb[index];
 		int s = sum + size;
-			cout  << "---->js " << js_start->back() << endl;
 		for(;;) {
-			cout << "s is : " << s << endl;
-			cout << "mai.size() is : " << mai.size() << endl;
-			cout << "pan.size() is : " << pan.size() << endl;
-			if ((size_t)s > mai.size()) {
+			if (static_cast<size_t>(s) > mai.size()) {
 				
 				s = mai.size();
 				cout << "s after is : " << s << endl;
 			}
 			pos = std::lower_bound(mai.begin(), (mai.begin() + s), *js_start, compare);
-			cout  << "---->\n";
 			mai.insert(pos, *js_start);
 			pan.erase(js_start);
 			size++;
@@ -231,139 +221,27 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest
 	insert_pan_in_main(main, simple, rest, pairs_nb);
 }
 
+vector<int> error_check(char **av) {
 
-
-
-
-
-
-// void error_check(char **av) {
+	char *tmp;
+	vector<int> my_nbrs;
 	
-// 	int i = 0;
-// 	if (string(av[i]))
-// }
-
-
-// while (!pan.empty())
-// {
-// 	long jb[] = {2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922,
-// 	 21846, 43690, 87382, 174762, 349526, 699050, 1398102, 2796202, 5592406, 
-// 	 11184810,22369622, 44739242, 89478486, 178956970, 357913942, 715827882, 
-// 	 1431655766, 2863311530, 5726623062, 11453246122, 22906492246, 45812984490};
-// 	int index = 0;
-// 	int i = 0;
-// 	vector<vector<int> >::iterator js_start = pan.begin();
-// 	vector<vector<int> >::iterator js_end = pan.begin();
-	
-// 	while (i < jb[index])
-// 	{
-// 		if (js_start >= pan.end()) {
-// 				js_start--;
-// 				break ;
-// 		}
-// 		i++;
-// 		js_start++;
-// 	}
-// 	for(;;) {
-// 		if (pan.empty()) {
-// 			return_to_my_vector(simple, mai);
-// 			return ;
-// 		}
-// 		pos = std::lower_bound(mai.begin(), mai.end(), *js_start, compare);
-// 		mai.insert(pos, *js_start);
-// 		pan.erase(js_start--);
-// 		// cout << pan.size() << "_-----\n";
-		
-// 		if (js_start == js_end) {
-// 			print_v_to_v(pan);
-// 			cout << "}}\n";
-// 			break ;
-// 		}
-// 	}
-// 	if (pan.size() == 2) {
-// 		return_to_my_vector(simple, mai);
-// 		return ;
-// 	}
-// }
-
-
-
-
-
-
-////////////////////////////////////////////////
-
-	// // vector<pair>::iterator it = gen.begin();
-	// vector<vector<int> > mai;
-	// vector<vector<int> > pan;
-	// prep_pan_n_main(gen, mai, pan, simple, rest);
-	
-	// // pan.reserve(simple.size());
-	// // mai.reserve(simple.size());
-	// // mai.push_back(it->first);
-	// // mai.push_back(it->second);
-	// // it++;
-	// // for(;it != gen.end();it++) {
-	// // 	mai.push_back(it->second);
-	// // }
-	// // for(it = gen.begin() + 1;it != gen.end();it++) {
-	// // 	pan.push_back(it->first);
-	// // }
-	// // std::cout << "here pan:   ";
-	// // 		print_v_to_v(pan);
-	// // if (!rest.empty()) {
-	// // 	pan.push_back(rest);
-	// // 	cout << "rest: " << rest.front() << " " << pan.back().back() << endl;
-	// // }
-
-	// vector<vector<int> >::iterator pos;
-	// if (pair_nb == 1) {
-	// 	return_to_my_vector(simple, mai);
-	// 	std::cout << "out--\n";
-	// 	return ;
-	// }
-	// vector<vector<int> >::iterator js_start; 
-	// vector<vector<int> >::iterator js_end;
-	// while (!pan.empty())
-	// {
-	// 	long jb[] = {2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922,
-	// 	 21846, 43690, 87382, 174762, 349526, 699050, 1398102, 2796202, 5592406, 
-	// 	 11184810,22369622, 44739242, 89478486, 178956970, 357913942, 715827882, 
-	// 	 1431655766, 2863311530, 5726623062, 11453246122, 22906492246, 45812984490};
-	// 	js_start = pan.begin();
-	// 	js_end = pan.begin();
-	// 	int index = 0;
-	// 	int i = 0;
-		
-	// 	while (i < jb[index] - 1)
-	// 	{
-	// 		if (js_start >= pan.end()) {
-	// 				js_start--;
-	// 				break ;
-	// 		}
-	// 		i++;
-	// 		js_start++;
-	// 		cout << "size : " << pan.size() <<endl;
-	// 	}
-	// 		int x = 0;
-	// 	for(;;) {
-	// 		// std::cout << "what to push      --->    " << js_start->back() << std::endl;
-	// 		if (js_start != pan.end()) {
-				
-	// 		pos = std::lower_bound(mai.begin(), mai.end(), *js_start, compare);
-	// 		std::cout << x++ << '\n';
-	// 		mai.insert(pos, *js_start);
-	// 		}
-	// 		// std::cout << "pushed :       \n";
-	// 		// print_v_to_v(mai);
-	// 		pan.erase(js_start);
-	// 		if (js_start == js_end) {
-	// 			cout << "}}\n";
-	// 			break ;
-	// 		}
+	for (int j = 0;av[j];j++) {
+		std::istringstream iss(av[j]);
+    	std::string token;
+    	while (iss >> token) {
 			
-	// 		js_start--;
-	// 	}
-	// 	// print_v_to_v(mai);
-	// 	index++;
-	// }
+			double nb = strtod(token.c_str(), &tmp);
+			if (strlen(tmp) > 0) {
+			
+				cout << "Error"	 << endl;
+				exit (1);
+			}
+			my_nbrs.push_back(nb);
+		}
+	}
+	// vector<int>::iterator it = my_nbrs.begin();
+	// for (;it != my_nbrs.end();it++)
+	// 	cout << *it << endl;
+	return (my_nbrs);
+}

@@ -6,12 +6,11 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 11:22:16 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/27 10:16:29 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/06 10:24:36 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
-#include <sstream>
 
 static int i = 0;
 void	error() {
