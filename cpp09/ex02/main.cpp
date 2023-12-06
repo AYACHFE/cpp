@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:08:20 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/06 15:38:00 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:44:05 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ int main(int ac, char **av) {
 	end_2 = clock();
 	double duration_2 = (double)(end_2 - start_2) / CLOCKS_PER_SEC * 1000000;
 	cout << "Time to process a range of " << input.size() << " elements with std::vector : " << duration_1 / 1000000 << " us" << endl;
-	cout << "Time to process a range of " << input.size() << " elements with std::list : " << duration_2 / 1000000 << " us" << endl;
+	cout << "Time to process a range of " << list_input.size() << " elements with std::list : " << duration_2 / 1000000 << " us" << endl;
 }

@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:30:39 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/11/25 16:05:16 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:52:46 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,6 @@ void BitcoinExchange::check_pos_date(string to_search_for) {
 }
 
 BitcoinExchange::BitcoinExchange() {}
-BitcoinExchange::BitcoinExchange(const BitcoinExchange & __unused copy) { *this = copy; }
+BitcoinExchange::BitcoinExchange(const BitcoinExchange & copy) { *this = copy; }
 BitcoinExchange::~BitcoinExchange() {}
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange & __unused btc) { return *this ;}

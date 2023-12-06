@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/06 15:47:22 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/06 20:07:50 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,8 +221,8 @@ vector<int> error_check(char **av) {
     	std::string token;
     	while (iss >> token) {
 			
-			double nb = strtod(token.c_str(), &tmp);
-			if (strlen(tmp) > 0 || nb < 0) {
+			int nb = strtod(token.c_str(), &tmp);
+			if (strlen(tmp) > 0 || nb < 0 || token.find(".") != std::string::npos) {
 			
 				cout << "Error"	 << endl;
 				exit (1);
@@ -454,7 +454,7 @@ list<int> error_check_list(char **av) {
 		std::string token;
 		while (iss >> token) {
 			
-			double nb = strtod(token.c_str(), &tmp);
+			int nb = strtod(token.c_str(), &tmp);
 			if (strlen(tmp) > 0 || nb < 0) {
 			
 				cout << "Error"	 << endl;
