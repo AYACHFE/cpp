@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/06 15:24:06 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:47:22 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ void merge_insert(vector<int> input) {
 static int counter = 0;
 
 void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
-	
-	// cout << "pair nb ; " << pairs_nb << " | pairs size ; " << pairs_size << endl;
-	
+
 	vector<int> rest;
 	pair my_pair;
 	vector<pair> main;
@@ -57,7 +55,6 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 	}
 	if ((size_t)(pairs_nb * pairs_size) != simple.size())
 	{
-		// cout << "\033[31mrest stored\033[0m\n";
 		for(size_t l = i;l < simple.size();l++ ) {
 			rest.push_back(simple.at(l));
 		}
@@ -81,9 +78,6 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 			simple.push_back(*si);
 		}
 	}
-	// for (vector<int>::iterator l = simple.begin() ;l != simple.end(); ++l)
-	// 	cout << *l << " | ";
-	// cout << endl;
 	bool check = true;
 	if (pairs_nb == 1)
 		check = false;
@@ -108,24 +102,7 @@ void	return_to_my_vector(vector<int> &simple, vector<vector<int> > mai) {
 		for (;m != it->end();m++)
 			simple.push_back(*m);
 	}
-	// vector<int>::iterator s = simple.begin();
-	// cout << "simple is --> ";
-	// for(;s != simple.end(); s++)
-	// 	cout << *s << " | ";
-	// cout << "Vector Compar N: " <<  counter << endl;
 }
-
-// void print_v_to_v(vector<vector<int> > m) {
-// 	vector<vector<int> >::iterator it = m.begin();
-
-// 	for (;it != m.end() ;it++) {
-// 		vector<int>::iterator inner = it->begin();
-// 		cout << "--\n";
-// 		for (;inner != it->end();inner++) {
-// 			cout << "Inner : " << *inner << endl;
-// 		}
-// 	}
-// }
 
 void	prep_pan_n_main(vector<pair> &gen, vector<vector<int> > &mai, vector<vector<int> > &pan, vector<int> rest) {
 
@@ -133,15 +110,12 @@ void	prep_pan_n_main(vector<pair> &gen, vector<vector<int> > &mai, vector<vector
 	mai.push_back(it->first);
 	mai.push_back(it->second);
 	it++;
-	for(;it != gen.end();it++) {
+	for(;it != gen.end();it++)
 		mai.push_back(it->second);
-	}
-	for(it = gen.begin() + 1;it != gen.end();it++) {
+	for(it = gen.begin() + 1;it != gen.end();it++)
 		pan.push_back(it->first);
-	}
-	if (!rest.empty()) {
+	if (!rest.empty())
 		pan.push_back(rest);
-	}
 }
 
 void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest, int pair_nb) {
@@ -182,11 +156,8 @@ void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest
 		sum += jb[index];
 		int s = sum + size;
 		for(;;) {
-			if (static_cast<size_t>(s) > mai.size()) {
-				
+			if (static_cast<size_t>(s) > mai.size())
 				s = mai.size();
-				// cout << "s after is : " << s << endl;
-			}
 			pos = std::lower_bound(mai.begin(), (mai.begin() + s), *js_start, compare);
 			mai.insert(pos, *js_start);
 			pan.erase(js_start);
@@ -222,8 +193,6 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest
 	vector<int>::iterator it;
 	pair my_pair;
 	vector<pair> main;
-	// cout << "\033[31m--------------------------------\033[0m\n";
-	// cout << "pairs_nb : " << pairs_nb << " pairs_size : " << pairs_size << endl;
 	for (it = simple.begin(); it != simple.end();) {
 		
 		my_pair.first.clear();
@@ -238,7 +207,7 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest
 	}
 	insert_pan_in_main(main, simple, rest, pairs_nb);
 	if (pairs_size == 2) {
-		cout << "Vector Compar N: " <<  counter << endl;
+		// cout << "Vector Compar N: " <<  counter << endl;
 		check_if_sorted(simple);
 	}
 }
@@ -247,14 +216,13 @@ vector<int> error_check(char **av) {
 
 	char *tmp;
 	vector<int> my_nbrs;
-	
 	for (int j = 0;av[j];j++) {
 		std::istringstream iss(av[j]);
     	std::string token;
     	while (iss >> token) {
 			
 			double nb = strtod(token.c_str(), &tmp);
-			if (strlen(tmp) > 0) {
+			if (strlen(tmp) > 0 || nb < 0) {
 			
 				cout << "Error"	 << endl;
 				exit (1);
@@ -262,7 +230,10 @@ vector<int> error_check(char **av) {
 			my_nbrs.push_back(nb);
 		}
 	}
-
+	if (my_nbrs.size() <= 1) {
+		cout << "Error"	 << endl;
+		exit (1);
+	}
 	vector<int>::iterator it = my_nbrs.begin();
 	cout << "Before:  ";
 	for (;it != my_nbrs.end();it++)
@@ -273,7 +244,6 @@ vector<int> error_check(char **av) {
 
 //-------------------------list_part-------------------------//
 
-
 void merge_insert_list(list<int> input) {
 
 	list<int> simple = input;
@@ -281,15 +251,13 @@ void merge_insert_list(list<int> input) {
 	int i = simple.size();
 	int pairs_nb = i / 2;
 	int pairs_size = 2;
-	recur_deq(simple, pairs_nb, pairs_size);
+	recur_list(simple, pairs_nb, pairs_size);
 }
 
 static int list_counter = 0;
 
-void	recur_deq(list<int> &simple, int pairs_nb, int pairs_size) {
-	
-	// cout << "pair nb ; " << pairs_nb << " | pairs size ; " << pairs_size << endl;
-	
+void	recur_list(list<int> &simple, int pairs_nb, int pairs_size) {
+
 	list<int> rest;
 	list_pair my_pair;
 	list<list_pair> main;
@@ -310,7 +278,6 @@ void	recur_deq(list<int> &simple, int pairs_nb, int pairs_size) {
 	}
 	if ((size_t)(pairs_nb * pairs_size) != simple.size())
 	{
-		// cout << "\033[31mrest stored\033[0m\n";
 		for(size_t l = i;l < simple.size();l++ ) {
 			rest.push_back(*s_it++);
 		}
@@ -334,18 +301,15 @@ void	recur_deq(list<int> &simple, int pairs_nb, int pairs_size) {
 			simple.push_back(*si);
 		}
 	}
-	// for (list<int>::iterator l = simple.begin() ;l != simple.end(); ++l)
-	// 	cout << *l << " | ";
-	// cout << endl;
 	bool check = true;
 	if (pairs_nb == 1)
 		check = false;
 	if (check)
-		recur_deq(simple, pairs_nb / 2, pairs_size * 2);
-	insert_deq(simple, pairs_nb, pairs_size, rest);
+		recur_list(simple, pairs_nb / 2, pairs_size * 2);
+	insert_list(simple, pairs_nb, pairs_size, rest);
 }
 
-void	return_to_my_list_deq(list<int> &simple, list<list<int> > mai) {
+void	return_to_my_list_list(list<int> &simple, list<list<int> > mai) {
 
 	simple.clear();
 	list<list<int> >::iterator it = mai.begin();
@@ -354,14 +318,9 @@ void	return_to_my_list_deq(list<int> &simple, list<list<int> > mai) {
 		for (;m != it->end();m++)
 			simple.push_back(*m);
 	}
-	// list<int>::iterator s = simple.begin();
-	// cout << "simple is --> ";
-	// for(;s != simple.end(); s++)
-	// 	cout << *s << " | ";
-	// cout << "List Compar N: " <<  list_counter << endl;
 }
 
-void	prep_pan_n_main_deq(list<list_pair> &gen, list<list<int> > &mai, list<list<int> > &pan, list<int> rest) {
+void	prep_pan_n_main_list(list<list_pair> &gen, list<list<int> > &mai, list<list<int> > &pan, list<int> rest) {
 
 	list<list_pair>::iterator it = gen.begin();
 	mai.push_back(it->first);
@@ -380,20 +339,20 @@ void	prep_pan_n_main_deq(list<list_pair> &gen, list<list<int> > &mai, list<list<
 	}
 }
 
-bool compare_deq(list<int> vec, list<int> vec_1) {
+bool compare_list(list<int> vec, list<int> vec_1) {
 	list_counter++;
     return (vec.back() < vec_1.back());
 }
 
 
-void insert_pan_in_main_deq(list<list_pair> &gen, list<int> &simple, list<int> rest, int pair_nb) {
+void insert_pan_in_main_list(list<list_pair> &gen, list<int> &simple, list<int> rest, int pair_nb) {
 
 	list<list<int> > mai;
 	list<list<int> > pan;
-	prep_pan_n_main_deq(gen, mai, pan, rest);
+	prep_pan_n_main_list(gen, mai, pan, rest);
 	list<list<int> >::iterator pos;
 	if (pair_nb == 1) {
-		return_to_my_list_deq(simple, mai);
+		return_to_my_list_list(simple, mai);
 		return ;
 	}
 	list<list<int> >::iterator js_start;
@@ -430,7 +389,7 @@ void insert_pan_in_main_deq(list<list_pair> &gen, list<int> &simple, list<int> r
 				s = mai.size();
 			for (;s > 0 ;s--)
 				mai_end++;
-			pos = std::lower_bound(mai.begin(), mai_end, *js_start, compare_deq);
+			pos = std::lower_bound(mai.begin(), mai_end, *js_start, compare_list);
 			mai.insert(pos, *js_start);
 			pan.erase(js_start);
 			size++;
@@ -442,11 +401,11 @@ void insert_pan_in_main_deq(list<list_pair> &gen, list<int> &simple, list<int> r
 		}
 		index++;
 	}
-	return_to_my_list_deq(simple, mai);
+	return_to_my_list_list(simple, mai);
 }
 
 //--------------------------checks the container---------------------------//
-void	check_if_sorted_deq(list<int> __unused &simple) {
+void	check_if_sorted_list(list<int> __unused &simple) {
 	
 	list<int>::iterator it = simple.begin();
 	list<int>::iterator itt = simple.begin();
@@ -458,18 +417,14 @@ void	check_if_sorted_deq(list<int> __unused &simple) {
 			return ;
 		}
 		itt++;
-		// cout << "f " << (*itt) << " s " << *it << endl;
 	}
 }
 
-
-void	insert_deq(list<int>  &simple, int pairs_nb, int pairs_size, list<int> rest) {
+void	insert_list(list<int>  &simple, int pairs_nb, int pairs_size, list<int> rest) {
 
 	list<int>::iterator it;
 	list_pair my_pair;
 	list<list_pair> main;
-	// cout << "\033[31m--------------------------------\033[0m\n";
-	// cout << "pairs_nb : " << pairs_nb << " pairs_size : " << pairs_size << endl;
 	for (it = simple.begin(); it != simple.end();) {
 		
 		my_pair.first.clear();
@@ -482,14 +437,14 @@ void	insert_deq(list<int>  &simple, int pairs_nb, int pairs_size, list<int> rest
 		}
 		main.push_back(my_pair);
 	}
-	insert_pan_in_main_deq(main, simple, rest, pairs_nb);
+	insert_pan_in_main_list(main, simple, rest, pairs_nb);
 	if (pairs_size == 2) {
-		cout << "List Compar N: " <<  counter << endl;
-		check_if_sorted_deq(simple);
+		// cout << "List Compar N: " <<  list_counter << endl;
+		check_if_sorted_list(simple);
 	}
 }
 
-list<int> error_check_deq(char **av) {
+list<int> error_check_list(char **av) {
 
 	char *tmp;
 	list<int> my_nbrs;
@@ -508,8 +463,9 @@ list<int> error_check_deq(char **av) {
 			my_nbrs.push_back(nb);
 		}
 	}
-	// list<int>::iterator it = my_nbrs.begin();
-	// for (;it != my_nbrs.end();it++)
-	// 	cout << *it << endl;
+	if (my_nbrs.size() <= 1) {
+		cout << "Error"	 << endl;
+		exit (1);
+	}
 	return (my_nbrs);
 }
