@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:08:27 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/06 14:41:13 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:51:17 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ void	insert_deq(list<int>  &simple, int pairs_nb, int pairs_size, list<int> rest
 	}
 	insert_pan_in_main_deq(main, simple, rest, pairs_nb);
 	if (pairs_size == 2) {
-		cout << "List Compar N: " <<  counter << endl;
+		// cout << "List Compar N: " <<  counter << endl;
 		check_if_sorted_deq(simple);
 	}
 }

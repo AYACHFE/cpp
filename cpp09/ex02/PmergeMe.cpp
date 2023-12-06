@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/06 14:40:44 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:54:45 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,10 +202,16 @@ void	check_if_sorted(vector<int>  &simple) {
 	
 	vector<int>::iterator it = simple.begin();
 	for (;(it + 1) != simple.end();it++) {
-		if ((*(it + 1)) < *it)
+		if ((*(it + 1)) < *it) {
 			cout << "\033[31mNOt_sorted\033[0m\n";
 			return ;
+		}
 	}
+	vector<int>::iterator itt = simple.begin();
+	cout << "After :  ";
+	for (;itt != simple.end();itt++)
+		cout << *itt << " ";
+	cout << endl;
 }
 
 
@@ -230,7 +236,7 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest
 	}
 	insert_pan_in_main(main, simple, rest, pairs_nb);
 	if (pairs_size == 2) {
-		cout << "Vector Compar N: " <<  counter << endl;
+		// cout << "Vector Compar N: " <<  counter << endl;
 		check_if_sorted(simple);
 	}
 }
@@ -255,8 +261,10 @@ vector<int> error_check(char **av) {
 		}
 	}
 
-	// vector<int>::iterator it = my_nbrs.begin();
-	// for (;it != my_nbrs.end();it++)
-	// 	cout << *it << endl;
+	vector<int>::iterator it = my_nbrs.begin();
+	cout << "Before :  ";
+	for (;it != my_nbrs.end();it++)
+		cout << *it << " ";
+	cout << endl;
 	return (my_nbrs);
 }
