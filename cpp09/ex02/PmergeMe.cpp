@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/06 13:15:33 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:40:44 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int counter = 0;
 
 void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 	
-	cout << "pair nb ; " << pairs_nb << " | pairs size ; " << pairs_size << endl;
+	// cout << "pair nb ; " << pairs_nb << " | pairs size ; " << pairs_size << endl;
 	
 	vector<int> rest;
 	pair my_pair;
@@ -54,7 +54,7 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 	}
 	if ((size_t)(pairs_nb * pairs_size) != simple.size())
 	{
-		cout << "\033[31mrest stored\033[0m\n";
+		// cout << "\033[31mrest stored\033[0m\n";
 		for(size_t l = i;l < simple.size();l++ ) {
 			rest.push_back(simple.at(l));
 		}
@@ -78,9 +78,9 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 			simple.push_back(*si);
 		}
 	}
-	for (vector<int>::iterator l = simple.begin() ;l != simple.end(); ++l)
-		cout << *l << " | ";
-	cout << endl;
+	// for (vector<int>::iterator l = simple.begin() ;l != simple.end(); ++l)
+	// 	cout << *l << " | ";
+	// cout << endl;
 	bool check = true;
 	if (pairs_nb == 1)
 		check = false;
@@ -105,24 +105,24 @@ void	return_to_my_vector(vector<int> &simple, vector<vector<int> > mai) {
 		for (;m != it->end();m++)
 			simple.push_back(*m);
 	}
-	vector<int>::iterator s = simple.begin();
-	cout << "simple is --> ";
-	for(;s != simple.end(); s++)
-		cout << *s << " | ";
-	cout << endl << "Compar N: " <<  counter << endl;
+	// vector<int>::iterator s = simple.begin();
+	// cout << "simple is --> ";
+	// for(;s != simple.end(); s++)
+	// 	cout << *s << " | ";
+	// cout << "Vector Compar N: " <<  counter << endl;
 }
 
-void print_v_to_v(vector<vector<int> > m) {
-	vector<vector<int> >::iterator it = m.begin();
+// void print_v_to_v(vector<vector<int> > m) {
+// 	vector<vector<int> >::iterator it = m.begin();
 
-	for (;it != m.end() ;it++) {
-		vector<int>::iterator inner = it->begin();
-		cout << "--\n";
-		for (;inner != it->end();inner++) {
-			cout << "Inner : " << *inner << endl;
-		}
-	}
-}
+// 	for (;it != m.end() ;it++) {
+// 		vector<int>::iterator inner = it->begin();
+// 		cout << "--\n";
+// 		for (;inner != it->end();inner++) {
+// 			cout << "Inner : " << *inner << endl;
+// 		}
+// 	}
+// }
 
 void	prep_pan_n_main(vector<pair> &gen, vector<vector<int> > &mai, vector<vector<int> > &pan, vector<int> rest) {
 
@@ -214,8 +214,8 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest
 	vector<int>::iterator it;
 	pair my_pair;
 	vector<pair> main;
-	cout << "\033[31m--------------------------------\033[0m\n";
-	cout << "pairs_nb : " << pairs_nb << " pairs_size : " << pairs_size << endl;
+	// cout << "\033[31m--------------------------------\033[0m\n";
+	// cout << "pairs_nb : " << pairs_nb << " pairs_size : " << pairs_size << endl;
 	for (it = simple.begin(); it != simple.end();) {
 		
 		my_pair.first.clear();
@@ -230,7 +230,7 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest
 	}
 	insert_pan_in_main(main, simple, rest, pairs_nb);
 	if (pairs_size == 2) {
-
+		cout << "Vector Compar N: " <<  counter << endl;
 		check_if_sorted(simple);
 	}
 }

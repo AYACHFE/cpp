@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:08:20 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/06 13:16:42 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:41:32 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int main(int ac, char **av) {
 	av++;
 	input = error_check(av);
 	merge_insert(input);
-	cout << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n";
 	list_input = error_check_deq(av);
 	merge_insert_list(list_input);
 }

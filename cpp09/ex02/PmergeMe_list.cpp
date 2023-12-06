@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe_deq.cpp                                   :+:      :+:    :+:   */
+/*   PmergeMe_list.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:08:27 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/06 13:52:45 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:41:13 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int counter = 0;
 
 void	recur_deq(list<int> &simple, int pairs_nb, int pairs_size) {
 	
-	cout << "pair nb ; " << pairs_nb << " | pairs size ; " << pairs_size << endl;
+	// cout << "pair nb ; " << pairs_nb << " | pairs size ; " << pairs_size << endl;
 	
 	list<int> rest;
 	pair my_pair;
@@ -50,7 +50,7 @@ void	recur_deq(list<int> &simple, int pairs_nb, int pairs_size) {
 	}
 	if ((size_t)(pairs_nb * pairs_size) != simple.size())
 	{
-		cout << "\033[31mrest stored\033[0m\n";
+		// cout << "\033[31mrest stored\033[0m\n";
 		for(size_t l = i;l < simple.size();l++ ) {
 			rest.push_back(*s_it++);
 		}
@@ -74,9 +74,9 @@ void	recur_deq(list<int> &simple, int pairs_nb, int pairs_size) {
 			simple.push_back(*si);
 		}
 	}
-	for (list<int>::iterator l = simple.begin() ;l != simple.end(); ++l)
-		cout << *l << " | ";
-	cout << endl;
+	// for (list<int>::iterator l = simple.begin() ;l != simple.end(); ++l)
+	// 	cout << *l << " | ";
+	// cout << endl;
 	bool check = true;
 	if (pairs_nb == 1)
 		check = false;
@@ -94,23 +94,11 @@ void	return_to_my_list_deq(list<int> &simple, list<list<int> > mai) {
 		for (;m != it->end();m++)
 			simple.push_back(*m);
 	}
-	list<int>::iterator s = simple.begin();
-	cout << "simple is --> ";
-	for(;s != simple.end(); s++)
-		cout << *s << " | ";
-	cout << endl << "Compar N: " <<  counter << endl;
-}
-
-void print_v_to_v_deq(list<list<int> > m) {
-	list<list<int> >::iterator it = m.begin();
-
-	for (;it != m.end() ;it++) {
-		list<int>::iterator inner = it->begin();
-		cout << "--\n";
-		for (;inner != it->end();inner++) {
-			cout << "Inner : " << *inner << endl;
-		}
-	}
+	// list<int>::iterator s = simple.begin();
+	// cout << "simple is --> ";
+	// for(;s != simple.end(); s++)
+	// 	cout << *s << " | ";
+	// cout << "List Compar N: " <<  counter << endl;
 }
 
 void	prep_pan_n_main_deq(list<pair> &gen, list<list<int> > &mai, list<list<int> > &pan, list<int> rest) {
@@ -150,6 +138,7 @@ void insert_pan_in_main_deq(list<pair> &gen, list<int> &simple, list<int> rest, 
 	}
 	list<list<int> >::iterator js_start;
 	list<list<int> >::iterator js_end;
+	list<list<int> >::iterator mai_end;
 	int index = 0;
 	long jb[] = {2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922,
 	 21846, 43690, 87382, 174762, 349526, 699050, 1398102, 2796202, 5592406, 
@@ -175,10 +164,13 @@ void insert_pan_in_main_deq(list<pair> &gen, list<int> &simple, list<int> rest, 
 			js_start--;
 		sum += jb[index];
 		int s = sum + size;
+		mai_end = mai.begin();
 		for(;;) {
 			if (static_cast<size_t>(s) > mai.size())
 				s = mai.size();
-			pos = std::lower_bound(mai.begin(), (mai.end()), *js_start, compare_deq);
+			for (;s > 0 ;s--)
+				mai_end++;
+			pos = std::lower_bound(mai.begin(), mai_end, *js_start, compare_deq);
 			mai.insert(pos, *js_start);
 			pan.erase(js_start);
 			size++;
@@ -186,6 +178,7 @@ void insert_pan_in_main_deq(list<pair> &gen, list<int> &simple, list<int> rest, 
 				break ;
 			}
 			js_start--;
+			mai_end--;
 		}
 		index++;
 	}
@@ -195,15 +188,18 @@ void insert_pan_in_main_deq(list<pair> &gen, list<int> &simple, list<int> rest, 
 //--------------------------checks the container---------------------------//
 void	check_if_sorted_deq(list<int> __unused &simple) {
 	
-	// list<int>::iterator it = simple.begin();
-	// for (;(it + 1) != simple.end();it++) {
-	// 	if ((*(it + 1)) < *it) {
+	list<int>::iterator it = simple.begin();
+	list<int>::iterator itt = simple.begin();
+	itt++;
+	for (;itt != simple.end();it++) {
+		if ((*itt) < *it) {
 			
-	// 		cout << "\033[31mNOt_sorted\033[0m\n" << endl;
-	// 		return ;
-	// 	}
-	// 	// cout << "f " << (*(it + 1)) << " s " << *it << endl;
-	// }
+			cout << "\033[31mNOt_sorted\033[0m\n" << endl;
+			return ;
+		}
+		itt++;
+		// cout << "f " << (*itt) << " s " << *it << endl;
+	}
 }
 
 
@@ -212,8 +208,8 @@ void	insert_deq(list<int>  &simple, int pairs_nb, int pairs_size, list<int> rest
 	list<int>::iterator it;
 	pair my_pair;
 	list<pair> main;
-	cout << "\033[31m--------------------------------\033[0m\n";
-	cout << "pairs_nb : " << pairs_nb << " pairs_size : " << pairs_size << endl;
+	// cout << "\033[31m--------------------------------\033[0m\n";
+	// cout << "pairs_nb : " << pairs_nb << " pairs_size : " << pairs_size << endl;
 	for (it = simple.begin(); it != simple.end();) {
 		
 		my_pair.first.clear();
@@ -228,6 +224,7 @@ void	insert_deq(list<int>  &simple, int pairs_nb, int pairs_size, list<int> rest
 	}
 	insert_pan_in_main_deq(main, simple, rest, pairs_nb);
 	if (pairs_size == 2) {
+		cout << "List Compar N: " <<  counter << endl;
 		check_if_sorted_deq(simple);
 	}
 }
