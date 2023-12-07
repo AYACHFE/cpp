@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 11:32:29 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/05 18:09:49 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/07 10:54:58 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ using std::string;
 
 template<typename type>
 class Array {
-		string *tab;
+		type *tab;
 		size_t n;
 	public:
 	//ORTHODOX

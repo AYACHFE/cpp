@@ -6,7 +6,7 @@
 /*   By: aachfenn <aachfenn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:09:18 by aachfenn          #+#    #+#             */
-/*   Updated: 2023/12/06 20:07:50 by aachfenn         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:05:02 by aachfenn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ typedef std::pair<std::vector<int>, std::vector<int> > pair;
 typedef std::pair<std::list<int>, std::list<int> > list_pair;
 
 //-------------------------vector_part-------------------------//
+static int counter = 0;
 
 template<typename type>
 void swap(type &arg_1, type &arg_2) {
@@ -34,7 +35,6 @@ void merge_insert(vector<int> input) {
 	recur(simple, pairs_nb, pairs_size);
 }
 
-static int counter = 0;
 
 void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 
@@ -83,10 +83,8 @@ void	recur(vector<int> &simple, int pairs_nb, int pairs_size) {
 		check = false;
 	if (check)
 		recur(simple, pairs_nb / 2, pairs_size * 2);
-	insert(simple, pairs_nb, pairs_size, rest);
+	insert(simple, pairs_size, rest);
 }
-
-
 
 bool compare(vector<int> vec, vector<int> vec_1) {
 	counter++;
@@ -118,16 +116,16 @@ void	prep_pan_n_main(vector<pair> &gen, vector<vector<int> > &mai, vector<vector
 		pan.push_back(rest);
 }
 
-void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest, int pair_nb) {
+void insert_pan_in_main(vector<pair> &gen, vector<int> &simple, vector<int> rest) {
 
 	vector<vector<int> > mai;
 	vector<vector<int> > pan;
 	prep_pan_n_main(gen, mai, pan, rest);
 	vector<vector<int> >::iterator pos;
-	if (pair_nb == 1) {
-		return_to_my_vector(simple, mai);
-		return ;
-	}
+	// if (pair_nb == 1) {
+	// 	return_to_my_vector(simple, mai);
+	// 	return ;
+	// }
 	vector<vector<int> >::iterator js_start;
 	vector<vector<int> >::iterator js_end;
 	int index = 0;
@@ -188,7 +186,7 @@ void	check_if_sorted(vector<int>  &simple) {
 	cout << endl;
 }
 
-void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest) {
+void	insert(vector<int>  &simple, int pairs_size, vector<int> rest) {
 
 	vector<int>::iterator it;
 	pair my_pair;
@@ -205,9 +203,9 @@ void	insert(vector<int>  &simple, int pairs_nb, int pairs_size, vector<int> rest
 		}
 		main.push_back(my_pair);
 	}
-	insert_pan_in_main(main, simple, rest, pairs_nb);
+	insert_pan_in_main(main, simple, rest);
 	if (pairs_size == 2) {
-		// cout << "Vector Compar N: " <<  counter << endl;
+		cout << "\033[31m" << "Vector Compar N: "  <<  counter << "\033[0m" << endl;
 		check_if_sorted(simple);
 	}
 }
@@ -218,8 +216,8 @@ vector<int> error_check(char **av) {
 	vector<int> my_nbrs;
 	for (int j = 0;av[j];j++) {
 		std::istringstream iss(av[j]);
-    	std::string token;
-    	while (iss >> token) {
+		std::string token;
+		while (iss >> token) {
 			
 			int nb = strtod(token.c_str(), &tmp);
 			if (strlen(tmp) > 0 || nb < 0 || token.find(".") != std::string::npos) {
@@ -243,18 +241,18 @@ vector<int> error_check(char **av) {
 }
 
 //-------------------------list_part-------------------------//
+static int list_counter = 0;
 
 void merge_insert_list(list<int> input) {
 
 	list<int> simple = input;
-	
+
 	int i = simple.size();
 	int pairs_nb = i / 2;
 	int pairs_size = 2;
 	recur_list(simple, pairs_nb, pairs_size);
 }
 
-static int list_counter = 0;
 
 void	recur_list(list<int> &simple, int pairs_nb, int pairs_size) {
 
@@ -306,7 +304,7 @@ void	recur_list(list<int> &simple, int pairs_nb, int pairs_size) {
 		check = false;
 	if (check)
 		recur_list(simple, pairs_nb / 2, pairs_size * 2);
-	insert_list(simple, pairs_nb, pairs_size, rest);
+	insert_list(simple, pairs_size, rest);
 }
 
 void	return_to_my_list_list(list<int> &simple, list<list<int> > mai) {
@@ -345,16 +343,16 @@ bool compare_list(list<int> vec, list<int> vec_1) {
 }
 
 
-void insert_pan_in_main_list(list<list_pair> &gen, list<int> &simple, list<int> rest, int pair_nb) {
+void insert_pan_in_main_list(list<list_pair> &gen, list<int> &simple, list<int> rest) {
 
 	list<list<int> > mai;
 	list<list<int> > pan;
 	prep_pan_n_main_list(gen, mai, pan, rest);
 	list<list<int> >::iterator pos;
-	if (pair_nb == 1) {
-		return_to_my_list_list(simple, mai);
-		return ;
-	}
+	// if (pair_nb == 1) {
+	// 	return_to_my_list_list(simple, mai);
+	// 	return ;
+	// }
 	list<list<int> >::iterator js_start;
 	list<list<int> >::iterator js_end;
 	list<list<int> >::iterator mai_end;
@@ -420,7 +418,7 @@ void	check_if_sorted_list(list<int> __unused &simple) {
 	}
 }
 
-void	insert_list(list<int>  &simple, int pairs_nb, int pairs_size, list<int> rest) {
+void	insert_list(list<int>  &simple, int pairs_size, list<int> rest) {
 
 	list<int>::iterator it;
 	list_pair my_pair;
@@ -437,9 +435,9 @@ void	insert_list(list<int>  &simple, int pairs_nb, int pairs_size, list<int> res
 		}
 		main.push_back(my_pair);
 	}
-	insert_pan_in_main_list(main, simple, rest, pairs_nb);
+	insert_pan_in_main_list(main, simple, rest);
 	if (pairs_size == 2) {
-		// cout << "List Compar N: " <<  list_counter << endl;
+		cout << "\033[31m" << "List Compar N: "  <<  list_counter << "\033[0m" << endl;
 		check_if_sorted_list(simple);
 	}
 }
